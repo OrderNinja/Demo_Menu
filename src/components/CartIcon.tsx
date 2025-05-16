@@ -1,7 +1,7 @@
 
 import React from "react";
-import { useCart } from "@/context/CartContext";
-import { ShoppingCart, Menu } from "lucide-react";
+import { useCart, AddOnOption } from "@/context/CartContext";
+import { ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +9,52 @@ import { Link } from "react-router-dom";
 
 const CartIcon: React.FC = () => {
   const { totalItems, totalPrice, items, removeFromCart, updateQuantity } = useCart();
+
+  // Format customization selections for display
+  const formatCustomizations = (item: any) => {
+    if (!item.selectedCustomizations) return null;
+    
+    const customizationsToDisplay = Object.entries(item.selectedCustomizations)
+      .filter(([key]) => key !== 'addOns')
+      .map(([key, value]) => {
+        const formattedKey = key.replace(/([A-Z])/g, ' $1').trim();
+        return (
+          <div key={key} className="text-xs text-gray-600">
+            <span className="font-medium">{formattedKey}:</span> {value as string}
+          </div>
+        );
+      });
+      
+    // Add add-ons if present
+    if (item.selectedCustomizations.addOns && (item.selectedCustomizations.addOns as AddOnOption[]).length > 0) {
+      const addOns = item.selectedCustomizations.addOns as AddOnOption[];
+      customizationsToDisplay.push(
+        <div key="addOns" className="text-xs text-gray-600">
+          <span className="font-medium">Add-ons:</span> {addOns.map(a => a.name).join(', ')}
+        </div>
+      );
+    }
+    
+    return customizationsToDisplay.length > 0 ? (
+      <div className="mt-1 space-y-1">{customizationsToDisplay}</div>
+    ) : null;
+  };
+
+  // Calculate item price with add-ons
+  const calculateItemPrice = (item: any) => {
+    let price = item.price;
+    if (item.selectedCustomizations?.addOns) {
+      const addOns = item.selectedCustomizations.addOns as AddOnOption[];
+      price += addOns.reduce((sum, addon) => sum + addon.price, 0);
+    }
+    return price;
+  };
+
+  // Generate a unique key for each cart item
+  const getItemKey = (item: any) => {
+    if (!item.selectedCustomizations) return item.id;
+    return `${item.id}-${JSON.stringify(item.selectedCustomizations)}`;
+  };
 
   return (
     <Sheet>
@@ -39,51 +85,57 @@ const CartIcon: React.FC = () => {
           ) : (
             <>
               <div className="space-y-4 max-h-[60vh] overflow-auto">
-                {items.map((item) => (
-                  <div 
-                    key={item.id} 
-                    className="flex justify-between items-center border-b border-gray-200 pb-4"
-                  >
-                    <div className="flex items-center space-x-4">
-                      <img 
-                        src={item.image} 
-                        alt={item.name} 
-                        className="h-16 w-16 rounded-md object-cover"
-                      />
-                      <div>
-                        <h4 className="font-medium text-restaurant-secondary">{item.name}</h4>
-                        <p className="text-sm text-gray-500">${item.price.toFixed(2)}</p>
+                {items.map((item) => {
+                  const itemKey = getItemKey(item);
+                  const itemPrice = calculateItemPrice(item);
+                  
+                  return (
+                    <div 
+                      key={itemKey} 
+                      className="flex justify-between items-center border-b border-gray-200 pb-4"
+                    >
+                      <div className="flex items-center space-x-4">
+                        <img 
+                          src={item.image} 
+                          alt={item.name} 
+                          className="h-16 w-16 rounded-md object-cover"
+                        />
+                        <div>
+                          <h4 className="font-medium text-restaurant-secondary">{item.name}</h4>
+                          <p className="text-sm text-gray-500">${itemPrice.toFixed(2)}</p>
+                          {formatCustomizations(item)}
+                        </div>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          className="h-8 w-8 p-0"
+                          onClick={() => updateQuantity(item.id, item.quantity - 1, itemKey)}
+                        >
+                          -
+                        </Button>
+                        <span className="w-8 text-center">{item.quantity}</span>
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          className="h-8 w-8 p-0"
+                          onClick={() => updateQuantity(item.id, item.quantity + 1, itemKey)}
+                        >
+                          +
+                        </Button>
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          className="h-8 text-red-500 hover:text-red-700 hover:bg-red-50"
+                          onClick={() => removeFromCart(item.id, itemKey)}
+                        >
+                          Remove
+                        </Button>
                       </div>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        className="h-8 w-8 p-0"
-                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                      >
-                        -
-                      </Button>
-                      <span className="w-8 text-center">{item.quantity}</span>
-                      <Button 
-                        variant="outline" 
-                        size="sm"
-                        className="h-8 w-8 p-0"
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      >
-                        +
-                      </Button>
-                      <Button 
-                        variant="ghost" 
-                        size="sm"
-                        className="h-8 text-red-500 hover:text-red-700 hover:bg-red-50"
-                        onClick={() => removeFromCart(item.id)}
-                      >
-                        Remove
-                      </Button>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
 
               <div className="border-t border-gray-200 pt-4">

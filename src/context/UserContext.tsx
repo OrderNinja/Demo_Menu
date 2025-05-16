@@ -20,8 +20,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     phone: "",
   });
 
-  // Check if user provided required information
-  const isInfoComplete = Boolean(userInfo.name && userInfo.phone);
+  // Always consider info complete since we're using guest by default
+  const isInfoComplete = true;
 
   return (
     <UserContext.Provider
