@@ -64,12 +64,15 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
                 restaurant: {
-                    primary: '#E07A5F',
-                    secondary: '#3D405B',
-                    accent: '#81B29A',
-                    light: '#F2F4F3',
-                    dark: '#2D3047'
+                    primary: '#E27D60',   // Thai orange-red
+                    secondary: '#1D3557', // Deep navy blue
+                    accent: '#41B3A3',    // Teal accent
+                    light: '#F4F1DE',     // Cream/light background
+                    dark: '#2A2D43'       // Dark tone
                 }
+			},
+			fontFamily: {
+				poppins: ['Poppins', 'sans-serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

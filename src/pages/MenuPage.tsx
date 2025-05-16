@@ -30,14 +30,14 @@ const MenuPage: React.FC = () => {
   }, [activeCategory]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-sm py-4 px-6 sticky top-0 z-10">
+      <header className="bg-restaurant-secondary py-4 px-6 text-white">
         <div className="container mx-auto flex justify-between items-center">
           <Logo />
           
           <div className="flex items-center gap-4">
-            <span className="hidden md:block text-gray-600">
+            <span className="hidden md:block text-gray-100">
               Welcome, {userInfo.name}
             </span>
             <CartIcon />
@@ -45,8 +45,8 @@ const MenuPage: React.FC = () => {
         </div>
       </header>
       
-      {/* Category tabs - now horizontal below header */}
-      <div className="bg-white shadow-sm py-2 sticky top-20 z-10">
+      {/* Category tabs - horizontal below header */}
+      <div className="bg-white shadow-md py-2 sticky top-0 z-10">
         <div className="container mx-auto px-4">
           <Tabs defaultValue={activeCategory} onValueChange={setActiveCategory}>
             <TabsList className="w-full h-auto flex overflow-x-auto pb-1 justify-start md:justify-center gap-1">
@@ -67,9 +67,12 @@ const MenuPage: React.FC = () => {
       <main className="flex-1 container mx-auto px-4 py-8">
         {/* Menu items */}
         <div className="flex-1">
-          <h1 className="text-3xl font-bold text-restaurant-secondary mb-6">
-            {categories.find(cat => cat.id === activeCategory)?.name}
-          </h1>
+          <div className="flex items-center gap-3 mb-6">
+            <div className="h-10 w-2 bg-restaurant-primary"></div>
+            <h1 className="text-3xl font-bold text-restaurant-secondary">
+              {categories.find(cat => cat.id === activeCategory)?.name}
+            </h1>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredItems.map(item => (
@@ -98,7 +101,7 @@ const MenuPage: React.FC = () => {
 
       {/* Footer */}
       <footer className="bg-restaurant-secondary text-white py-4 text-center mt-16">
-        <p>&copy; 2025 Bistro Royale. All rights reserved.</p>
+        <p>&copy; 2025 Thai Orchid. All rights reserved.</p>
       </footer>
     </div>
   );
