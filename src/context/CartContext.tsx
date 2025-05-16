@@ -1,4 +1,3 @@
-
 import { createContext, useState, useContext, ReactNode } from "react";
 import { toast } from "sonner";
 
@@ -17,6 +16,7 @@ export interface Customizations {
   protein?: string[];
   pastaType?: string[];
   topping?: string[];
+  toppings?: string[]; // Added this property
   drinks?: string[];
   mains?: string[];
   appetizers?: string[];
@@ -24,6 +24,9 @@ export interface Customizations {
   dessert?: string[];
   desserts?: string[];
   wine?: string[];
+  rice?: string[]; // Added this property
+  curryProtein?: string[]; // Added this property
+  noodleProtein?: string[]; // Added for completeness
   addOns?: AddOnOption[];
 }
 
