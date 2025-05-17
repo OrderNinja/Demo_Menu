@@ -1,7 +1,7 @@
 
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { QrCode } from "lucide-react";
+import { QRCodeSVG } from "qrcode.react";
 import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 
@@ -12,6 +12,7 @@ interface QRCodePageProps {
 const QRCodePage: React.FC<QRCodePageProps> = ({ tableId = "12" }) => {
   const navigate = useNavigate();
   const appUrl = window.location.origin;
+  const qrValue = `${appUrl}/?table=${tableId}`;
   
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -27,9 +28,16 @@ const QRCodePage: React.FC<QRCodePageProps> = ({ tableId = "12" }) => {
             Scan to Order
           </h1>
           
-          {/* QR Code Placeholder - In a real app, use a QR code generation library */}
+          {/* Real QR Code that links to the restaurant menu with table ID */}
           <div className="border-4 border-restaurant-primary rounded-lg p-6 mb-6">
-            <QrCode size={180} className="text-restaurant-secondary" />
+            <QRCodeSVG 
+              value={qrValue}
+              size={180}
+              bgColor={"#ffffff"}
+              fgColor={"#000000"}
+              level={"H"}
+              includeMargin={false}
+            />
           </div>
           
           <div className="text-center mb-6">
