@@ -8,6 +8,7 @@ import { UserProvider } from "./context/UserContext";
 import { CartProvider } from "./context/CartContext";
 
 // Pages
+import QRCodePage from "./pages/QRCodePage";
 import LandingPage from "./pages/LandingPage";
 import MenuPage from "./pages/MenuPage";
 import OrderSummaryPage from "./pages/OrderSummaryPage";
@@ -24,6 +25,7 @@ const App = () => (
           <Sonner position="top-center" />
           <BrowserRouter>
             <Routes>
+              <Route path="/qr" element={<QRCodePage />} />
               <Route path="/" element={<LandingPage />} />
               <Route path="/menu" element={<MenuPage />} />
               <Route path="/order" element={<OrderSummaryPage />} />

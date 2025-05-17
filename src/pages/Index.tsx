@@ -1,9 +1,9 @@
 
 import { Navigate } from "react-router-dom";
 
-// This is the main entry point, which just redirects to our landing page
+// This is the main entry point, which now redirects to our QR code page
 const Index = () => {
-  return <Navigate to="/" replace />;
+  return <Navigate to="/qr" replace />;
 };
 
 export default Index;
