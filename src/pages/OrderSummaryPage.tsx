@@ -39,6 +39,16 @@ const OrderSummaryPage: React.FC = () => {
     clearCart();
   };
 
+  // Calculate item price including add-ons for display
+  const calculateItemPrice = (item: any) => {
+    let price = item.price;
+    if (item.selectedCustomizations?.addOns) {
+      const addOns = item.selectedCustomizations.addOns;
+      price += addOns.reduce((sum: number, addon: any) => sum + addon.price, 0);
+    }
+    return price;
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
@@ -84,73 +94,95 @@ const OrderSummaryPage: React.FC = () => {
                 <h2 className="text-xl font-semibold text-restaurant-secondary mb-4">Order Details</h2>
                 
                 <div className="space-y-4">
-                  {items.map((item) => (
-                    <div 
-                      key={item.id} 
-                      className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-4 border-b border-gray-200"
-                    >
-                      <div className="flex items-center space-x-4 mb-4 sm:mb-0">
-                        <img 
-                          src={item.image} 
-                          alt={item.name} 
-                          className="h-16 w-16 rounded-md object-cover"
-                        />
-                        <div>
-                          <h3 className="font-medium text-restaurant-secondary">{item.name}</h3>
-                          <p className="text-sm text-gray-500">${item.price.toFixed(2)}</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-center space-x-4 w-full sm:w-auto">
-                        <div className="flex items-center border rounded-md overflow-hidden">
-                          <button 
-                            className="px-3 py-1 bg-gray-100 hover:bg-gray-200 transition-colors"
-                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                            aria-label="Decrease quantity"
-                          >
-                            <Minus className="h-4 w-4" />
-                          </button>
-                          <span className="px-4 py-1 text-center min-w-[40px]">{item.quantity}</span>
-                          <button 
-                            className="px-3 py-1 bg-gray-100 hover:bg-gray-200 transition-colors"
-                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                            aria-label="Increase quantity"
-                          >
-                            <Plus className="h-4 w-4" />
-                          </button>
+                  {items.map((item) => {
+                    const itemPrice = calculateItemPrice(item);
+                    return (
+                      <div 
+                        key={item.id} 
+                        className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-4 border-b border-gray-200"
+                      >
+                        <div className="flex items-center space-x-4 mb-4 sm:mb-0">
+                          <img 
+                            src={item.image} 
+                            alt={item.name} 
+                            className="h-16 w-16 rounded-md object-cover"
+                          />
+                          <div>
+                            <h3 className="font-medium text-restaurant-secondary">{item.name}</h3>
+                            <p className="text-sm text-gray-500">
+                              ${itemPrice.toFixed(2)}
+                              {item.selectedCustomizations?.addOns && (
+                                <span className="text-xs ml-1">
+                                  (includes add-ons)
+                                </span>
+                              )}
+                            </p>
+                            {item.selectedCustomizations && Object.keys(item.selectedCustomizations).length > 0 && (
+                              <div className="text-xs text-gray-500 mt-1">
+                                {Object.entries(item.selectedCustomizations)
+                                  .filter(([key]) => key !== 'addOns')
+                                  .map(([key, value]) => (
+                                    <div key={key}>
+                                      <span className="font-medium">{key.replace(/([A-Z])/g, ' $1').trim()}: </span>
+                                      {value as string}
+                                    </div>
+                                  ))}
+                                {item.selectedCustomizations.addOns && (
+                                  <div>
+                                    <span className="font-medium">Add-ons: </span>
+                                    {(item.selectedCustomizations.addOns as any[]).map(addon => 
+                                      `${addon.name} (+$${addon.price.toFixed(2)})`
+                                    ).join(', ')}
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                          </div>
                         </div>
                         
-                        <span className="font-medium text-restaurant-secondary">
-                          ${(item.price * item.quantity).toFixed(2)}
-                        </span>
-                        
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => removeFromCart(item.id)}
-                          className="text-red-500 hover:text-red-700 hover:bg-red-50"
-                        >
-                          Remove
-                        </Button>
+                        <div className="flex items-center space-x-4 w-full sm:w-auto">
+                          <div className="flex items-center border rounded-md overflow-hidden">
+                            <button 
+                              className="px-3 py-1 bg-gray-100 hover:bg-gray-200 transition-colors"
+                              onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                              aria-label="Decrease quantity"
+                            >
+                              <Minus className="h-4 w-4" />
+                            </button>
+                            <span className="px-4 py-1 text-center min-w-[40px]">{item.quantity}</span>
+                            <button 
+                              className="px-3 py-1 bg-gray-100 hover:bg-gray-200 transition-colors"
+                              onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                              aria-label="Increase quantity"
+                            >
+                              <Plus className="h-4 w-4" />
+                            </button>
+                          </div>
+                          
+                          <span className="font-medium text-restaurant-secondary">
+                            ${(itemPrice * item.quantity).toFixed(2)}
+                          </span>
+                          
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => removeFromCart(item.id)}
+                            className="text-red-500 hover:text-red-700 hover:bg-red-50"
+                          >
+                            Remove
+                          </Button>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
               
-              {/* Order summary */}
+              {/* Order summary - removed tax calculation */}
               <div className="bg-gray-50 p-6">
-                <div className="flex justify-between mb-2">
-                  <span className="text-gray-600">Subtotal</span>
-                  <span className="font-medium">${totalPrice.toFixed(2)}</span>
-                </div>
-                <div className="flex justify-between mb-4">
-                  <span className="text-gray-600">Tax</span>
-                  <span className="font-medium">${(totalPrice * 0.08).toFixed(2)}</span>
-                </div>
                 <div className="flex justify-between text-lg font-bold text-restaurant-secondary">
                   <span>Total</span>
-                  <span>${(totalPrice * 1.08).toFixed(2)}</span>
+                  <span>${totalPrice.toFixed(2)}</span>
                 </div>
               </div>
             </div>
@@ -179,7 +211,7 @@ const OrderSummaryPage: React.FC = () => {
         <p>&copy; 2025 Bistro Royale. All rights reserved.</p>
       </footer>
       
-      {/* Confirmation Dialog */}
+      {/* Confirmation Dialog - also updated to remove tax */}
       <Dialog open={isConfirmationOpen} onOpenChange={setIsConfirmationOpen}>
         <DialogContent>
           <DialogHeader>
@@ -192,18 +224,26 @@ const OrderSummaryPage: React.FC = () => {
           <div className="py-4">
             <h3 className="font-medium text-restaurant-secondary mb-2">Order Summary</h3>
             <div className="space-y-2">
-              {items.map((item) => (
-                <div key={item.id} className="flex justify-between">
-                  <span>
-                    {item.quantity} x {item.name}
-                  </span>
-                  <span>${(item.price * item.quantity).toFixed(2)}</span>
-                </div>
-              ))}
+              {items.map((item) => {
+                const itemPrice = calculateItemPrice(item);
+                return (
+                  <div key={item.id} className="flex justify-between">
+                    <span>
+                      {item.quantity} x {item.name}
+                      {item.selectedCustomizations?.addOns && (
+                        <span className="text-xs ml-1 text-gray-500">
+                          (with add-ons)
+                        </span>
+                      )}
+                    </span>
+                    <span>${(itemPrice * item.quantity).toFixed(2)}</span>
+                  </div>
+                );
+              })}
               <div className="border-t pt-2 mt-2 font-bold">
                 <div className="flex justify-between">
                   <span>Total:</span>
-                  <span>${(totalPrice * 1.08).toFixed(2)}</span>
+                  <span>${totalPrice.toFixed(2)}</span>
                 </div>
               </div>
             </div>
