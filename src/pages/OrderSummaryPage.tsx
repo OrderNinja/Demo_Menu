@@ -65,7 +65,7 @@ const OrderSummaryPage: React.FC = () => {
             </div>
             <h1 className="text-3xl font-bold text-restaurant-secondary mb-4">Order Confirmed!</h1>
             <p className="text-gray-600 mb-6">
-              Thank you for your order, {userInfo.name}. We'll contact you at {userInfo.phone} when your order is ready.
+              Thank you for your order, {userInfo.name}. The kitchen is preparing your food!
             </p>
             <Button 
               onClick={() => navigate("/menu")} 
