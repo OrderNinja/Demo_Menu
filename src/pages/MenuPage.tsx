@@ -16,6 +16,7 @@ const MenuPage: React.FC = () => {
   const { totalItems } = useCart();
   const [activeCategory, setActiveCategory] = useState(categories[0].id);
   const [filteredItems, setFilteredItems] = useState(menuItems.filter(item => item.category === activeCategory));
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   // Redirect to landing if user info is not complete
   useEffect(() => {
@@ -27,7 +28,17 @@ const MenuPage: React.FC = () => {
   // Filter items when category changes
   useEffect(() => {
     setFilteredItems(menuItems.filter(item => item.category === activeCategory));
+    // Scroll to top when changing categories
+    window.scrollTo(0, 0);
   }, [activeCategory]);
+
+  // Simulate loading more items for UX
+  const loadMoreItems = () => {
+    setIsLoadingMore(true);
+    setTimeout(() => {
+      setIsLoadingMore(false);
+    }, 800);
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
@@ -79,6 +90,12 @@ const MenuPage: React.FC = () => {
               <MenuItemCard key={item.id} item={item} />
             ))}
           </div>
+
+          {isLoadingMore && (
+            <div className="flex justify-center my-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-restaurant-primary"></div>
+            </div>
+          )}
         </div>
       </main>
       

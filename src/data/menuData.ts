@@ -66,6 +66,36 @@ export const menuItems: MenuItem[] = [
       ]
     }
   },
+  {
+    id: "app-5",
+    name: "Tod Mun Pla",
+    description: "Thai fish cakes made with red curry paste, kaffir lime leaves, and served with cucumber relish.",
+    price: 9.99,
+    image: "https://images.unsplash.com/photo-1617118602065-92652c38d107?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    category: "appetizers",
+    customizations: {
+      spicyLevel: ["Not Spicy", "Mild", "Medium", "Hot"],
+      addOns: [
+        { name: "Extra Sauce", price: 0.99 },
+        { name: "Extra Cucumber Relish", price: 1.49 }
+      ]
+    }
+  },
+  {
+    id: "app-6",
+    name: "Som Tum",
+    description: "Traditional green papaya salad with tomatoes, peanuts, and lime dressing.",
+    price: 10.99,
+    image: "https://images.unsplash.com/photo-1626804372905-52c9fb0a60fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    category: "appetizers",
+    customizations: {
+      spicyLevel: ["Mild", "Medium", "Hot", "Thai Hot"],
+      addOns: [
+        { name: "Grilled Shrimp", price: 3.99 },
+        { name: "Salted Egg", price: 1.99 }
+      ]
+    }
+  },
   
   // Main Courses
   {
@@ -153,6 +183,56 @@ export const menuItems: MenuItem[] = [
       ]
     }
   },
+  {
+    id: "main-6",
+    name: "Khao Soi",
+    description: "Northern Thai curry noodle soup with crispy noodles on top.",
+    price: 16.99,
+    image: "https://images.unsplash.com/photo-1569562211263-0ec0c7a722e5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    category: "main-courses",
+    customizations: {
+      protein: ["Chicken", "Beef", "Tofu"],
+      spicyLevel: ["Mild", "Medium", "Hot", "Thai Hot"],
+      addOns: [
+        { name: "Extra Crispy Noodles", price: 1.99 },
+        { name: "Extra Pickled Vegetables", price: 1.49 }
+      ]
+    }
+  },
+  {
+    id: "main-7",
+    name: "Pad See Ew",
+    description: "Stir-fried wide rice noodles with egg, Chinese broccoli, and sweet soy sauce.",
+    price: 15.99,
+    image: "https://images.unsplash.com/photo-1553163698-fbf75abfd4c9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    category: "main-courses",
+    customizations: {
+      protein: ["Chicken", "Beef", "Shrimp", "Tofu"],
+      spicyLevel: ["Not Spicy", "Mild", "Medium", "Hot"],
+      addOns: [
+        { name: "Extra Vegetables", price: 2.49 },
+        { name: "Extra Protein", price: 3.99 },
+        { name: "Extra Egg", price: 1.49 }
+      ]
+    }
+  },
+  {
+    id: "main-8",
+    name: "Tom Yum Goong",
+    description: "Spicy and sour soup with shrimp, lemongrass, galangal, and kaffir lime leaves.",
+    price: 17.99,
+    image: "https://images.unsplash.com/photo-1548943487-a2e4e43b4853?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    category: "main-courses",
+    customizations: {
+      protein: ["Shrimp", "Chicken", "Mixed Seafood (+$3)"],
+      spicyLevel: ["Medium", "Hot", "Thai Hot", "Extra Hot"],
+      addOns: [
+        { name: "Extra Mushrooms", price: 1.99 },
+        { name: "Extra Shrimp", price: 3.99 },
+        { name: "Coconut Milk (Tom Kha Style)", price: 1.49 }
+      ]
+    }
+  },
   
   // Desserts
   {
@@ -198,6 +278,34 @@ export const menuItems: MenuItem[] = [
       ]
     }
   },
+  {
+    id: "dessert-4",
+    name: "Khanom Krok",
+    description: "Coconut rice pancakes with sweet or savory toppings.",
+    price: 7.99,
+    image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    category: "desserts",
+    customizations: {
+      toppings: ["Sweet Corn", "Green Onion", "Taro", "Coconut"],
+      addOns: [
+        { name: "Extra Pancakes (3)", price: 3.99 }
+      ]
+    }
+  },
+  {
+    id: "dessert-5",
+    name: "Bua Loy",
+    description: "Colorful rice flour dumplings in warm coconut milk.",
+    price: 6.99,
+    image: "https://images.unsplash.com/photo-1606804581030-84c30ad98f14?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    category: "desserts",
+    customizations: {
+      addOns: [
+        { name: "Sesame Filling", price: 1.49 },
+        { name: "Taro Filling", price: 1.49 }
+      ]
+    }
+  },
   
   // Drinks
   {
@@ -221,7 +329,7 @@ export const menuItems: MenuItem[] = [
     name: "Lychee Coconut Smoothie",
     description: "Refreshing blend of lychee and coconut milk, perfect for cooling down.",
     price: 5.99,
-    image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1513558161201-1d1dec239d61?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     category: "drinks",
     customizations: {
       ice: ["Regular", "Light", "Extra"],
@@ -256,8 +364,40 @@ export const menuItems: MenuItem[] = [
       ]
     }
   },
+  {
+    id: "drink-5",
+    name: "Coconut Smoothie",
+    description: "Refreshing coconut smoothie made with fresh coconut meat and milk.",
+    price: 5.99,
+    image: "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    category: "drinks",
+    customizations: {
+      ice: ["Regular", "Light", "Extra"],
+      sugarLevel: ["Regular", "Half Sweet", "Less Sweet", "No Sugar"],
+      addOns: [
+        { name: "Grass Jelly", price: 0.99 },
+        { name: "Coconut Jelly", price: 0.99 }
+      ]
+    }
+  },
+  {
+    id: "drink-6",
+    name: "Chrysanthemum Tea",
+    description: "Traditional Thai herbal tea with chrysanthemum flowers.",
+    price: 4.99,
+    image: "https://images.unsplash.com/photo-1576092762791-dd9e2220abd1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    category: "drinks",
+    customizations: {
+      temperature: ["Hot", "Cold"],
+      sugarLevel: ["Regular", "Half Sweet", "Less Sweet", "No Sugar"],
+      addOns: [
+        { name: "Honey", price: 0.75 },
+        { name: "Lemon", price: 0.50 }
+      ]
+    }
+  },
   
-  // Combo Meals
+  // Combos
   {
     id: "combo-1",
     name: "Thai Street Food Combo",
@@ -325,6 +465,41 @@ export const menuItems: MenuItem[] = [
         { name: "Mango Sticky Rice (instead of ice cream)", price: 2.99 },
         { name: "Thai Iced Tea", price: 3.99 },
         { name: "Extra Tofu", price: 2.99 }
+      ]
+    }
+  },
+  {
+    id: "combo-5",
+    name: "Spicy Lover's Special",
+    description: "Tom Yum soup, Som Tum salad, and Pad Kee Mao (Drunken Noodles) with your choice of protein.",
+    price: 24.99,
+    image: "https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    category: "combos",
+    customizations: {
+      protein: ["Chicken", "Beef", "Shrimp (+$2)", "Tofu"],
+      spicyLevel: ["Medium", "Hot", "Thai Hot", "Extra Hot"],
+      addOns: [
+        { name: "Thai Iced Tea", price: 3.99 },
+        { name: "Extra Rice", price: 2.99 },
+        { name: "Coconut Ice Cream", price: 4.99 }
+      ]
+    }
+  },
+  {
+    id: "combo-6",
+    name: "Royal Thai Feast",
+    description: "Satay skewers, Tom Kha soup, Green Curry, Pad Thai, and Mango Sticky Rice for 2-3 people.",
+    price: 44.99,
+    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    category: "combos",
+    customizations: {
+      curryProtein: ["Chicken", "Beef", "Tofu"],
+      noodleProtein: ["Chicken", "Shrimp", "Combo"],
+      spicyLevel: ["Not Spicy", "Mild", "Medium", "Hot"],
+      rice: ["Jasmine Rice", "Brown Rice", "Sticky Rice"],
+      addOns: [
+        { name: "Thai Tea (2)", price: 8.99 },
+        { name: "Extra Satay Skewers (4)", price: 6.99 }
       ]
     }
   }
