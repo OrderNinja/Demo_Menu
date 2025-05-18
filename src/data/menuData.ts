@@ -1,4 +1,3 @@
-
 import { MenuItem } from "../context/CartContext";
 
 // Menu data with items organized by categories
@@ -74,7 +73,7 @@ export const menuItems: MenuItem[] = [
     name: "Pad Thai",
     description: "Thailand's famous stir-fried rice noodles with eggs, bean sprouts, peanuts, and lime.",
     price: 14.99,
-    image: "https://images.unsplash.com/photo-1637806931079-da9af0e2fb99?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1559314809-0d155014e29e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     category: "main-courses",
     customizations: {
       protein: ["Chicken", "Shrimp", "Tofu", "Vegetable", "Combo"],
@@ -108,7 +107,7 @@ export const menuItems: MenuItem[] = [
     name: "Massaman Curry",
     description: "Rich, mild curry with potatoes, peanuts, and your choice of protein.",
     price: 16.99,
-    image: "https://images.unsplash.com/photo-1596797038530-2c107aa8e10d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1569058242567-93de6f36f8e6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     category: "main-courses",
     customizations: {
       protein: ["Chicken", "Beef", "Tofu"],
@@ -161,7 +160,7 @@ export const menuItems: MenuItem[] = [
     name: "Mango Sticky Rice",
     description: "Sweet sticky rice topped with fresh mango slices and coconut sauce.",
     price: 8.99,
-    image: "https://images.unsplash.com/photo-1607017137021-78acb5cfd9fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1621236378591-eaf80b32b100?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     category: "desserts",
     customizations: {
       addOns: [
@@ -203,10 +202,10 @@ export const menuItems: MenuItem[] = [
   // Drinks
   {
     id: "drink-1",
-    name: "Thai Iced Tea",
+    name: "Thai Tea",
     description: "Sweet and creamy Thai tea with condensed milk, served over ice.",
     price: 4.99,
-    image: "https://images.unsplash.com/photo-1563803835717-0cbf435DDD97?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     category: "drinks",
     customizations: {
       ice: ["Regular", "Light", "Extra", "No Ice"],
@@ -238,7 +237,7 @@ export const menuItems: MenuItem[] = [
     name: "Singha Beer",
     description: "Thailand's most popular pale lager beer.",
     price: 6.99,
-    image: "https://images.unsplash.com/photo-1600213903598-25be92abde30?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1600628421066-f6bda6a7b976?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     category: "drinks"
   },
   {
