@@ -1,6 +1,6 @@
 
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { QRCodeSVG } from "qrcode.react";
 import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
@@ -11,8 +11,16 @@ interface QRCodePageProps {
 
 const QRCodePage: React.FC<QRCodePageProps> = ({ tableId = "12" }) => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const urlTableId = searchParams.get('table') || tableId;
+  
   const appUrl = window.location.origin;
-  const qrValue = `${appUrl}/?table=${tableId}`;
+  const qrValue = `${appUrl}/?table=${urlTableId}`;
+  
+  // Log for debugging
+  useEffect(() => {
+    console.log("QR Code value:", qrValue);
+  }, [qrValue]);
   
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -43,7 +51,7 @@ const QRCodePage: React.FC<QRCodePageProps> = ({ tableId = "12" }) => {
           <div className="text-center mb-6">
             <p className="text-gray-600 mb-2">Scan this code with your phone</p>
             <p className="text-lg font-medium text-restaurant-primary">
-              Table #{tableId}
+              Table #{urlTableId}
             </p>
           </div>
           
