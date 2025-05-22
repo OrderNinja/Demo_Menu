@@ -16,14 +16,10 @@ const MenuPage: React.FC = () => {
   const navigate = useNavigate();
   const { userInfo, isInfoComplete } = useUser();
   const { totalItems } = useCart();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [activeCategory, setActiveCategory] = useState(categories[0].id);
   const [filteredItems, setFilteredItems] = useState(menuItems.filter(item => item.category === activeCategory));
   const [isLoadingMore, setIsLoadingMore] = useState(false);
-
-  // Split categories into two rows
-  const firstRowCategories = categories.slice(0, Math.ceil(categories.length / 2));
-  const secondRowCategories = categories.slice(Math.ceil(categories.length / 2));
 
   // Redirect to landing if user info is not complete
   useEffect(() => {
@@ -47,6 +43,22 @@ const MenuPage: React.FC = () => {
     }, 800);
   };
 
+  // Get localized name for menu items
+  const getLocalizedName = (item) => {
+    if (item.localizedNames && item.localizedNames[language]) {
+      return item.localizedNames[language];
+    }
+    return item.name;
+  };
+
+  // Get localized description for menu items
+  const getLocalizedDescription = (item) => {
+    if (item.localizedDescriptions && item.localizedDescriptions[language]) {
+      return item.localizedDescriptions[language];
+    }
+    return item.description;
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-restaurant-secondary">
       {/* Header */}
@@ -64,26 +76,12 @@ const MenuPage: React.FC = () => {
         </div>
       </header>
       
-      {/* Category tabs - now in two rows */}
+      {/* Category tabs - now in a single row */}
       <div className="bg-white shadow-md py-3 sticky top-0 z-10">
         <div className="container mx-auto px-4">
           <Tabs defaultValue={activeCategory} onValueChange={setActiveCategory}>
-            {/* First row of categories */}
-            <TabsList className="w-full h-auto flex overflow-x-auto pb-1 justify-center gap-1 mb-2">
-              {firstRowCategories.map(category => (
-                <TabsTrigger 
-                  key={category.id} 
-                  value={category.id}
-                  className="px-4 py-2 whitespace-nowrap data-[state=active]:bg-restaurant-primary data-[state=active]:text-white"
-                >
-                  {t(`categories.${category.id}`, category.name)}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-            
-            {/* Second row of categories */}
-            <TabsList className="w-full h-auto flex overflow-x-auto pb-1 justify-center gap-1">
-              {secondRowCategories.map(category => (
+            <TabsList className="w-full h-auto flex overflow-x-auto pb-1 justify-center gap-2">
+              {categories.map(category => (
                 <TabsTrigger 
                   key={category.id} 
                   value={category.id}
@@ -109,7 +107,14 @@ const MenuPage: React.FC = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredItems.map(item => (
-              <MenuItemCard key={item.id} item={item} />
+              <MenuItemCard 
+                key={item.id} 
+                item={{
+                  ...item,
+                  name: getLocalizedName(item),
+                  description: getLocalizedDescription(item)
+                }} 
+              />
             ))}
           </div>
 

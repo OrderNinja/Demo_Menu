@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useCart, ItemCustomization, AddOnOption } from "@/context/CartContext";
-import { MenuItem } from "@/data/menuData"; // Import MenuItem from menuData.ts instead
+import { MenuItem } from "@/data/menuData";
 import { useLanguage } from "@/context/LanguageContext";
 import { Plus, Settings } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -16,14 +16,10 @@ interface MenuItemCardProps {
 
 const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
   const { addToCart } = useCart();
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [isCustomizing, setIsCustomizing] = useState(false);
   const [selectedCustomizations, setSelectedCustomizations] = useState<ItemCustomization>({});
-  
-  // Get the appropriate name and description based on current language
-  const itemName = item.name;
-  const itemDescription = item.description;
   
   // Calculate additional price from add-ons
   const calculateAddOnPrice = () => {
@@ -86,19 +82,19 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
     <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 animate-fade-in">
       <img 
         src={item.image} 
-        alt={itemName} 
+        alt={item.name} 
         className="w-full h-48 object-cover"
       />
       <div className="p-4">
         <div className="flex justify-between items-start mb-2">
-          <h3 className="font-semibold text-lg text-restaurant-primary">{itemName}</h3>
+          <h3 className="font-semibold text-lg text-restaurant-primary">{item.name}</h3>
           <span className="font-bold text-restaurant-primary">${item.price.toFixed(2)}</span>
         </div>
         
         <p className="text-gray-600 text-sm mb-4 h-12 overflow-hidden">
-          {itemDescription.length > 70
-            ? `${itemDescription.substring(0, 70)}...`
-            : itemDescription}
+          {item.description.length > 70
+            ? `${item.description.substring(0, 70)}...`
+            : item.description}
         </p>
         
         <div className="flex justify-between items-center">
@@ -110,15 +106,15 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
             </DialogTrigger>
             <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
               <DialogHeader>
-                <DialogTitle className="text-xl font-bold text-restaurant-primary">{itemName}</DialogTitle>
+                <DialogTitle className="text-xl font-bold text-restaurant-primary">{item.name}</DialogTitle>
                 <DialogDescription>
                   <div className="mt-4">
                     <img 
                       src={item.image} 
-                      alt={itemName} 
+                      alt={item.name} 
                       className="w-full h-48 object-cover rounded-md mb-4"
                     />
-                    <p className="text-gray-700">{itemDescription}</p>
+                    <p className="text-gray-700">{item.description}</p>
                     
                     {isCustomizing ? (
                       <div className="mt-4">

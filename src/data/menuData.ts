@@ -46,16 +46,11 @@ export interface AddOnOption {
 
 // Define categories
 export const categories: Category[] = [
-  { id: "appetizers", name: "Appetizers" },
-  { id: "soups", name: "Soups" },
-  { id: "salads", name: "Salads" },
   { id: "mainDishes", name: "Main Dishes" },
-  { id: "noodles", name: "Noodles" },
-  { id: "rice", name: "Rice Dishes" },
-  { id: "desserts", name: "Desserts" },
-  { id: "beverages", name: "Beverages" },
-  { id: "specials", name: "Chef's Specials" },
-  { id: "vegetarian", name: "Vegetarian" }
+  { id: "soups", name: "Soups" },
+  { id: "appetizers", name: "Appetizers" },
+  { id: "salads", name: "Salads" },
+  { id: "beverages", name: "Beverages" }
 ];
 
 // Define menu items
@@ -409,27 +404,6 @@ export const menuItems: MenuItem[] = [
     }
   },
   {
-    id: "thai-tea",
-    name: "Thai Tea",
-    description: "Sweet and creamy Thai tea.",
-    price: 3.99,
-    image: "https://images.unsplash.com/photo-1617975414786-cfb9a43974d1",
-    category: "beverages",
-    isVegetarian: true,
-    localizedNames: {
-      en: "Thai Tea",
-      th: "ชาไทย",
-      "zh-cn": "泰式奶茶",
-      "zh-tw": "泰式奶茶"
-    },
-    localizedDescriptions: {
-      en: "Sweet and creamy Thai tea.",
-      th: "ชาไทยรสหวานและครีมมี่",
-      "zh-cn": "香甜浓郁的泰式奶茶",
-      "zh-tw": "香甜濃郁的泰式奶茶"
-    }
-  },
-  {
     id: "roselle-juice",
     name: "Roselle Juice",
     description: "Sweet-tart hibiscus tea served cold.",
@@ -470,53 +444,5 @@ export const menuItems: MenuItem[] = [
       "zh-cn": "由干菊花制作的香茶",
       "zh-tw": "由乾菊花製作的香茶"
     }
-  },
-
-  // More classic Thai dishes
-  {
-    id: "red-curry",
-    name: "Red Curry",
-    description: "Red curry with coconut milk, bell peppers, and basil.",
-    price: 13.99,
-    image: "https://images.unsplash.com/photo-1664299885444-4183b546999f",
-    category: "mainDishes",
-    isSpicy: true,
-    customizations: {
-      protein: ["Chicken", "Beef", "Tofu", "Vegetable"],
-      spiceLevel: ["Mild", "Medium", "Hot"],
-    },
-    localizedNames: {
-      en: "Red Curry",
-      th: "แกงเผ็ด",
-      "zh-cn": "红咖喱",
-      "zh-tw": "紅咖哩"
-    },
-    localizedDescriptions: {
-      en: "Red curry with coconut milk, bell peppers, and basil.",
-      th: "แกงเผ็ดกับกะทิ พริกหวาน และใบโหระพา",
-      "zh-cn": "红咖喱配椰奶，甜椒和罗勒",
-      "zh-tw": "紅咖哩配椰奶，甜椒和羅勒"
-    }
-  },
-  {
-    id: "mango-sticky-rice",
-    name: "Mango Sticky Rice",
-    description: "Sweet sticky rice with fresh mango and coconut milk.",
-    price: 8.99,
-    image: "https://images.unsplash.com/photo-1611824744754-679842e210c4",
-    category: "desserts",
-    isVegetarian: true,
-    localizedNames: {
-      en: "Mango Sticky Rice",
-      th: "ข้าวเหนียวมะม่วง",
-      "zh-cn": "芒果糯米饭",
-      "zh-tw": "芒果糯米飯"
-    },
-    localizedDescriptions: {
-      en: "Sweet sticky rice with fresh mango and coconut milk.",
-      th: "ข้าวเหนียวหวานกับมะม่วงสดและกะทิ",
-      "zh-cn": "甜糯米配新鲜芒果和椰奶",
-      "zh-tw": "甜糯米配新鮮芒果和椰奶"
-    }
-  },
+  }
 ];
