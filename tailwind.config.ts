@@ -64,10 +64,10 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
                 restaurant: {
-                    primary: '#951713',   // Updated Thai red
-                    secondary: '#F318D5', // Updated Thai pink
+                    primary: '#951713',   // Updated to requested red
+                    secondary: '#F2E8D5', // Updated to requested cream color
                     accent: '#41B3A3',    // Keep teal accent
-                    light: '#F4F1DE',     // Cream/light background
+                    light: '#F2E8D5',     // Update cream/light background
                     dark: '#2A2D43'       // Dark tone
                 }
 			},

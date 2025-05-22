@@ -20,7 +20,6 @@ const MenuPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState(categories[0].id);
   const [filteredItems, setFilteredItems] = useState(menuItems.filter(item => item.category === activeCategory));
   const [isLoadingMore, setIsLoadingMore] = useState(false);
-  const [customLogoUrl, setCustomLogoUrl] = useState<string | undefined>(undefined);
 
   // Redirect to landing if user info is not complete
   useEffect(() => {
@@ -45,11 +44,11 @@ const MenuPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-restaurant-secondary">
       {/* Header */}
-      <header className="bg-restaurant-secondary py-4 px-6 text-white">
+      <header className="bg-restaurant-primary py-4 px-6 text-white">
         <div className="container mx-auto flex justify-between items-center">
-          <CustomizableLogo logoUrl={customLogoUrl} />
+          <CustomizableLogo />
           
           <div className="flex items-center gap-4">
             <span className="hidden md:block text-gray-100">
@@ -85,7 +84,7 @@ const MenuPage: React.FC = () => {
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-6">
             <div className="h-10 w-2 bg-restaurant-primary"></div>
-            <h1 className="text-3xl font-bold text-restaurant-secondary">
+            <h1 className="text-3xl font-bold text-restaurant-primary">
               {t(`categories.${activeCategory}`, categories.find(cat => cat.id === activeCategory)?.name || "")}
             </h1>
           </div>
@@ -108,12 +107,12 @@ const MenuPage: React.FC = () => {
       {totalItems > 0 && (
         <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t p-4">
           <div className="container mx-auto flex justify-between items-center">
-            <span className="font-medium text-restaurant-secondary">
+            <span className="font-medium text-restaurant-primary">
               {totalItems} {totalItems === 1 ? t("ui.itemInCart") : t("ui.itemsInCart")}
             </span>
             <Button 
               onClick={() => navigate("/order")}
-              className="bg-restaurant-primary hover:bg-restaurant-secondary"
+              className="bg-restaurant-primary hover:bg-restaurant-primary/80"
             >
               {t("ui.viewOrder")}
             </Button>
@@ -122,7 +121,7 @@ const MenuPage: React.FC = () => {
       )}
 
       {/* Footer */}
-      <footer className="bg-restaurant-secondary text-white py-4 text-center mt-16">
+      <footer className="bg-restaurant-primary text-white py-4 text-center mt-16">
         <p>&copy; 2025 {t("app.title")}. All rights reserved.</p>
       </footer>
     </div>

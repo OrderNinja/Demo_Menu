@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -23,8 +22,8 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
   const [selectedCustomizations, setSelectedCustomizations] = useState<ItemCustomization>({});
   
   // Get the appropriate name and description based on current language
-  const itemName = item.localizedNames?.[language] || item.name;
-  const itemDescription = item.localizedDescriptions?.[language] || item.description;
+  const itemName = item.name;
+  const itemDescription = item.description;
   
   // Calculate additional price from add-ons
   const calculateAddOnPrice = () => {
@@ -92,7 +91,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
       />
       <div className="p-4">
         <div className="flex justify-between items-start mb-2">
-          <h3 className="font-semibold text-lg text-restaurant-secondary">{itemName}</h3>
+          <h3 className="font-semibold text-lg text-restaurant-primary">{itemName}</h3>
           <span className="font-bold text-restaurant-primary">${item.price.toFixed(2)}</span>
         </div>
         
@@ -105,13 +104,13 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
         <div className="flex justify-between items-center">
           <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
-              <Button variant="link" className="p-0 text-restaurant-secondary hover:text-restaurant-primary">
+              <Button variant="link" className="p-0 text-restaurant-primary hover:text-restaurant-primary/80">
                 {t("ui.details")}
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
               <DialogHeader>
-                <DialogTitle className="text-xl font-bold text-restaurant-secondary">{itemName}</DialogTitle>
+                <DialogTitle className="text-xl font-bold text-restaurant-primary">{itemName}</DialogTitle>
                 <DialogDescription>
                   <div className="mt-4">
                     <img 
@@ -191,7 +190,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
                               </span>
                             )}
                           </div>
-                          <Button onClick={handleAddToCart} className="bg-restaurant-primary hover:bg-restaurant-secondary">
+                          <Button onClick={handleAddToCart} className="bg-restaurant-primary hover:bg-restaurant-primary/80">
                             {t("ui.addToCart")}
                           </Button>
                         </div>
@@ -209,7 +208,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
                               <Settings className="h-4 w-4" /> {t("ui.customize")}
                             </Button>
                           )}
-                          <Button onClick={handleAddToCart}>
+                          <Button onClick={handleAddToCart} className="bg-restaurant-primary hover:bg-restaurant-primary/80">
                             {t("ui.addToCart")}
                           </Button>
                         </div>
@@ -227,7 +226,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
                 onClick={() => { setIsOpen(true); handleCustomizationClick(); }}
                 size="sm"
                 variant="outline"
-                className="text-restaurant-secondary border-restaurant-secondary hover:bg-restaurant-secondary hover:text-white"
+                className="text-restaurant-primary border-restaurant-primary hover:bg-restaurant-primary hover:text-white"
               >
                 <Settings className="mr-1 h-4 w-4" /> {t("ui.options")}
               </Button>
@@ -236,7 +235,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
             <Button 
               onClick={() => addToCart(item)} 
               size="sm" 
-              className="bg-restaurant-primary hover:bg-restaurant-secondary text-white"
+              className="bg-restaurant-primary hover:bg-restaurant-primary/80 text-white"
             >
               <Plus className="mr-1 h-4 w-4" /> {t("ui.addToCart")}
             </Button>

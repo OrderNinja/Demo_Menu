@@ -14,7 +14,7 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 // Translations data
 const translations: Record<Language, Record<string, string>> = {
   "en": {
-    "app.title": "Thai Orchid",
+    "app.title": "Order Ninja",
     "categories.appetizers": "Appetizers",
     "categories.soups": "Soups",
     "categories.salads": "Salads",
@@ -35,7 +35,7 @@ const translations: Record<Language, Record<string, string>> = {
     "ui.itemInCart": "item in cart",
   },
   "th": {
-    "app.title": "ไทย ออร์คิด",
+    "app.title": "ออเดอร์นินจา",
     "categories.appetizers": "ของว่าง",
     "categories.soups": "ซุป",
     "categories.salads": "ยำ",
@@ -56,7 +56,7 @@ const translations: Record<Language, Record<string, string>> = {
     "ui.itemInCart": "รายการในตะกร้า",
   },
   "zh-cn": {
-    "app.title": "泰国兰花",
+    "app.title": "订餐忍者",
     "categories.appetizers": "开胃菜",
     "categories.soups": "汤类",
     "categories.salads": "沙拉",
@@ -77,7 +77,7 @@ const translations: Record<Language, Record<string, string>> = {
     "ui.itemInCart": "件商品在购物车中",
   },
   "zh-tw": {
-    "app.title": "泰國蘭花",
+    "app.title": "訂餐忍者",
     "categories.appetizers": "開胃菜",
     "categories.soups": "湯類",
     "categories.salads": "沙拉",
