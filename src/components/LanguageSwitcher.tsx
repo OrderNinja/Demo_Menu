@@ -18,7 +18,7 @@ const LanguageSwitcher: React.FC = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="text-white">
+        <Button variant="ghost" size="icon" className="text-restaurant-primary">
           <Globe className="h-5 w-5" />
           <span className="sr-only">Switch language</span>
         </Button>

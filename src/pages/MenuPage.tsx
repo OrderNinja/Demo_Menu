@@ -50,12 +50,12 @@ const MenuPage: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-restaurant-secondary">
       {/* Header */}
-      <header className="bg-restaurant-primary py-4 px-6 text-white">
+      <header className="bg-[#F2E8D5] py-4 px-6 text-restaurant-primary">
         <div className="container mx-auto flex justify-between items-center">
           <CustomizableLogo />
           
           <div className="flex items-center gap-4">
-            <span className="hidden md:block text-gray-100">
+            <span className="hidden md:block text-restaurant-primary">
               {t("ui.welcome")}, {userInfo.name}
             </span>
             <LanguageSwitcher />
