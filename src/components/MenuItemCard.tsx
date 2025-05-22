@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { MenuItem, useCart, ItemCustomization, AddOnOption } from "@/context/CartContext";
+import { useLanguage } from "@/context/LanguageContext";
 import { Plus, Settings } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -15,9 +16,14 @@ interface MenuItemCardProps {
 
 const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
   const { addToCart } = useCart();
+  const { t, language } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [isCustomizing, setIsCustomizing] = useState(false);
   const [selectedCustomizations, setSelectedCustomizations] = useState<ItemCustomization>({});
+  
+  // Get the appropriate name and description based on current language
+  const itemName = item.localizedNames?.[language] || item.name;
+  const itemDescription = item.localizedDescriptions?.[language] || item.description;
   
   // Calculate additional price from add-ons
   const calculateAddOnPrice = () => {
@@ -80,52 +86,52 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
     <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 animate-fade-in">
       <img 
         src={item.image} 
-        alt={item.name} 
+        alt={itemName} 
         className="w-full h-48 object-cover"
       />
       <div className="p-4">
         <div className="flex justify-between items-start mb-2">
-          <h3 className="font-semibold text-lg text-restaurant-secondary">{item.name}</h3>
+          <h3 className="font-semibold text-lg text-restaurant-secondary">{itemName}</h3>
           <span className="font-bold text-restaurant-primary">${item.price.toFixed(2)}</span>
         </div>
         
         <p className="text-gray-600 text-sm mb-4 h-12 overflow-hidden">
-          {item.description.length > 70
-            ? `${item.description.substring(0, 70)}...`
-            : item.description}
+          {itemDescription.length > 70
+            ? `${itemDescription.substring(0, 70)}...`
+            : itemDescription}
         </p>
         
         <div className="flex justify-between items-center">
           <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
               <Button variant="link" className="p-0 text-restaurant-secondary hover:text-restaurant-primary">
-                Details
+                {t("ui.details")}
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-md max-h-[90vh] overflow-y-auto">
               <DialogHeader>
-                <DialogTitle className="text-xl font-bold text-restaurant-secondary">{item.name}</DialogTitle>
+                <DialogTitle className="text-xl font-bold text-restaurant-secondary">{itemName}</DialogTitle>
                 <DialogDescription>
                   <div className="mt-4">
                     <img 
                       src={item.image} 
-                      alt={item.name} 
+                      alt={itemName} 
                       className="w-full h-48 object-cover rounded-md mb-4"
                     />
-                    <p className="text-gray-700">{item.description}</p>
+                    <p className="text-gray-700">{itemDescription}</p>
                     
                     {isCustomizing ? (
                       <div className="mt-4">
-                        <h3 className="font-medium text-lg mb-3">Customize Your Order</h3>
+                        <h3 className="font-medium text-lg mb-3">{t("ui.customize")}</h3>
                         
                         {item.customizations && (
                           <Tabs defaultValue="options" className="mt-4">
                             <TabsList>
                               {Object.keys(item.customizations).filter(key => key !== 'addOns').length > 0 && (
-                                <TabsTrigger value="options">Options</TabsTrigger>
+                                <TabsTrigger value="options">{t("ui.options")}</TabsTrigger>
                               )}
                               {item.customizations.addOns && item.customizations.addOns.length > 0 && (
-                                <TabsTrigger value="addons">Add-ons</TabsTrigger>
+                                <TabsTrigger value="addons">{t("ui.customize")}</TabsTrigger>
                               )}
                             </TabsList>
                             
@@ -185,7 +191,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
                             )}
                           </div>
                           <Button onClick={handleAddToCart} className="bg-restaurant-primary hover:bg-restaurant-secondary">
-                            Add to Cart
+                            {t("ui.addToCart")}
                           </Button>
                         </div>
                       </div>
@@ -199,11 +205,11 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
                               onClick={handleCustomizationClick}
                               className="flex items-center gap-1"
                             >
-                              <Settings className="h-4 w-4" /> Customize
+                              <Settings className="h-4 w-4" /> {t("ui.customize")}
                             </Button>
                           )}
                           <Button onClick={handleAddToCart}>
-                            Add to Cart
+                            {t("ui.addToCart")}
                           </Button>
                         </div>
                       </>
@@ -222,7 +228,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
                 variant="outline"
                 className="text-restaurant-secondary border-restaurant-secondary hover:bg-restaurant-secondary hover:text-white"
               >
-                <Settings className="mr-1 h-4 w-4" /> Options
+                <Settings className="mr-1 h-4 w-4" /> {t("ui.options")}
               </Button>
             )}
             
@@ -231,7 +237,7 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
               size="sm" 
               className="bg-restaurant-primary hover:bg-restaurant-secondary text-white"
             >
-              <Plus className="mr-1 h-4 w-4" /> Add
+              <Plus className="mr-1 h-4 w-4" /> {t("ui.addToCart")}
             </Button>
           </div>
         </div>

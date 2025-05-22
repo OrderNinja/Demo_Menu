@@ -1,22 +1,26 @@
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Logo from "@/components/Logo";
+import CustomizableLogo from "@/components/CustomizableLogo";
 import MenuItemCard from "@/components/MenuItemCard";
 import CartIcon from "@/components/CartIcon";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useCart } from "@/context/CartContext";
 import { useUser } from "@/context/UserContext";
+import { useLanguage } from "@/context/LanguageContext";
 import { menuItems, categories } from "@/data/menuData";
 
 const MenuPage: React.FC = () => {
   const navigate = useNavigate();
   const { userInfo, isInfoComplete } = useUser();
   const { totalItems } = useCart();
+  const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState(categories[0].id);
   const [filteredItems, setFilteredItems] = useState(menuItems.filter(item => item.category === activeCategory));
   const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [customLogoUrl, setCustomLogoUrl] = useState<string | undefined>(undefined);
 
   // Redirect to landing if user info is not complete
   useEffect(() => {
@@ -45,12 +49,13 @@ const MenuPage: React.FC = () => {
       {/* Header */}
       <header className="bg-restaurant-secondary py-4 px-6 text-white">
         <div className="container mx-auto flex justify-between items-center">
-          <Logo />
+          <CustomizableLogo logoUrl={customLogoUrl} />
           
           <div className="flex items-center gap-4">
             <span className="hidden md:block text-gray-100">
-              Welcome, {userInfo.name}
+              {t("ui.welcome")}, {userInfo.name}
             </span>
+            <LanguageSwitcher />
             <CartIcon />
           </div>
         </div>
@@ -67,7 +72,7 @@ const MenuPage: React.FC = () => {
                   value={category.id}
                   className="px-4 py-2 whitespace-nowrap data-[state=active]:bg-restaurant-primary data-[state=active]:text-white"
                 >
-                  {category.name}
+                  {t(`categories.${category.id}`, category.name)}
                 </TabsTrigger>
               ))}
             </TabsList>
@@ -81,7 +86,7 @@ const MenuPage: React.FC = () => {
           <div className="flex items-center gap-3 mb-6">
             <div className="h-10 w-2 bg-restaurant-primary"></div>
             <h1 className="text-3xl font-bold text-restaurant-secondary">
-              {categories.find(cat => cat.id === activeCategory)?.name}
+              {t(`categories.${activeCategory}`, categories.find(cat => cat.id === activeCategory)?.name || "")}
             </h1>
           </div>
           
@@ -104,13 +109,13 @@ const MenuPage: React.FC = () => {
         <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t p-4">
           <div className="container mx-auto flex justify-between items-center">
             <span className="font-medium text-restaurant-secondary">
-              {totalItems} {totalItems === 1 ? 'item' : 'items'} in cart
+              {totalItems} {totalItems === 1 ? t("ui.itemInCart") : t("ui.itemsInCart")}
             </span>
             <Button 
               onClick={() => navigate("/order")}
               className="bg-restaurant-primary hover:bg-restaurant-secondary"
             >
-              View Your Order
+              {t("ui.viewOrder")}
             </Button>
           </div>
         </div>
@@ -118,7 +123,7 @@ const MenuPage: React.FC = () => {
 
       {/* Footer */}
       <footer className="bg-restaurant-secondary text-white py-4 text-center mt-16">
-        <p>&copy; 2025 Thai Orchid. All rights reserved.</p>
+        <p>&copy; 2025 {t("app.title")}. All rights reserved.</p>
       </footer>
     </div>
   );

@@ -1,4 +1,3 @@
-import { StaticImageData } from "next/image";
 
 // Define types for menu items and categories
 export interface MenuItem {
@@ -11,6 +10,19 @@ export interface MenuItem {
   customizations?: Customizations;
   isVegetarian?: boolean;
   isSpicy?: boolean;
+  // Multi-language support
+  localizedNames?: {
+    en: string;
+    th: string;
+    "zh-cn": string;
+    "zh-tw": string;
+  };
+  localizedDescriptions?: {
+    en: string;
+    th: string;
+    "zh-cn": string;
+    "zh-tw": string;
+  };
 }
 
 export interface Category {
@@ -37,456 +49,474 @@ export const categories: Category[] = [
   { id: "appetizers", name: "Appetizers" },
   { id: "soups", name: "Soups" },
   { id: "salads", name: "Salads" },
-  { id: "entrees", name: "Entrees" },
+  { id: "mainDishes", name: "Main Dishes" },
   { id: "noodles", name: "Noodles" },
   { id: "rice", name: "Rice Dishes" },
   { id: "desserts", name: "Desserts" },
   { id: "beverages", name: "Beverages" },
   { id: "specials", name: "Chef's Specials" },
-  { id: "vegetarian", name: "Vegetarian" },
+  { id: "vegetarian", name: "Vegetarian" }
 ];
 
 // Define menu items
 export const menuItems: MenuItem[] = [
-  {
-    id: "spring-rolls",
-    name: "Spring Rolls",
-    description: "Crispy spring rolls filled with vegetables and glass noodles.",
-    price: 6.99,
-    image: "https://images.unsplash.com/photo-1612878918838-590d1299a2ca?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    category: "appetizers",
-    isVegetarian: true,
-  },
-  {
-    id: "satay-chicken",
-    name: "Satay Chicken",
-    description: "Grilled chicken skewers marinated in Thai spices, served with peanut sauce.",
-    price: 8.99,
-    image: "https://images.unsplash.com/photo-1632574399449-5945495565e6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    category: "appetizers",
-  },
-  {
-    id: "tom-yum-soup",
-    name: "Tom Yum Soup",
-    description: "Hot and sour soup with shrimp, mushrooms, and lemongrass.",
-    price: 7.99,
-    image: "https://images.unsplash.com/photo-1620327796743-047408f7499e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    category: "soups",
-    isSpicy: true,
-  },
-  {
-    id: "tom-kha-soup",
-    name: "Tom Kha Soup",
-    description: "Coconut milk soup with chicken, galangal, and mushrooms.",
-    price: 7.99,
-    image: "https://images.unsplash.com/photo-1661956602153-2338e5419541?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    category: "soups",
-  },
-  {
-    id: "green-papaya-salad",
-    name: "Green Papaya Salad",
-    description: "Spicy salad with shredded green papaya, tomatoes, and peanuts.",
-    price: 9.99,
-    image: "https://images.unsplash.com/photo-1603569754454-a5562f941984?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    category: "salads",
-    isSpicy: true,
-    isVegetarian: true,
-  },
-  {
-    id: "thai-beef-salad",
-    name: "Thai Beef Salad",
-    description: "Grilled beef with mixed greens, red onions, and a spicy lime dressing.",
-    price: 12.99,
-    image: "https://images.unsplash.com/photo-1630427514217-5d8834c89891?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    category: "salads",
-  },
+  // Main Dishes
   {
     id: "pad-thai",
     name: "Pad Thai",
     description: "Stir-fried rice noodles with shrimp, tofu, peanuts, and bean sprouts.",
     price: 11.99,
-    image: "https://images.unsplash.com/photo-1673875544193-710fa11c8844?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    category: "noodles",
+    image: "https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg",
+    category: "mainDishes",
     customizations: {
       protein: ["Chicken", "Shrimp", "Tofu", "Vegetable"],
     },
-  },
-  {
-    id: "drunken-noodles",
-    name: "Drunken Noodles",
-    description: "Wide rice noodles stir-fried with chicken, vegetables, and basil in a spicy sauce.",
-    price: 12.99,
-    image: "https://images.unsplash.com/photo-1630427375753-42f4a9729a80?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    category: "noodles",
-    isSpicy: true,
-    customizations: {
-      protein: ["Chicken", "Beef", "Tofu", "Vegetable"],
-      spiceLevel: ["Mild", "Medium", "Hot"],
+    localizedNames: {
+      en: "Pad Thai",
+      th: "ผัดไทย",
+      "zh-cn": "泰式炒河粉",
+      "zh-tw": "泰式炒河粉"
     },
+    localizedDescriptions: {
+      en: "Stir-fried rice noodles with shrimp, tofu, peanuts, and bean sprouts.",
+      th: "ก๋วยเตี๋ยวผัดกับกุ้ง เต้าหู้ ถั่วลิสง และถั่วงอก",
+      "zh-cn": "炒河粉配虾，豆腐，花生和豆芽",
+      "zh-tw": "炒河粉配蝦，豆腐，花生和豆芽"
+    }
   },
   {
     id: "green-curry",
     name: "Green Curry",
     description: "Green curry with coconut milk, bamboo shoots, and vegetables.",
     price: 13.99,
-    image: "https://images.unsplash.com/photo-1664299885592-7990a9591527?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    category: "entrees",
+    image: "https://images.pexels.com/photos/2942934/pexels-photo-2942934.jpeg",
+    category: "mainDishes",
     isSpicy: true,
-    isVegetarian: true,
     customizations: {
       protein: ["Chicken", "Beef", "Tofu", "Vegetable"],
       spiceLevel: ["Mild", "Medium", "Hot"],
     },
+    localizedNames: {
+      en: "Green Curry",
+      th: "แกงเขียวหวาน",
+      "zh-cn": "绿咖喱",
+      "zh-tw": "綠咖哩"
+    },
+    localizedDescriptions: {
+      en: "Green curry with coconut milk, bamboo shoots, and vegetables.",
+      th: "แกงเขียวหวานกับกะทิ หน่อไม้ และผัก",
+      "zh-cn": "绿咖喱配椰奶，竹笋和蔬菜",
+      "zh-tw": "綠咖哩配椰奶，竹筍和蔬菜"
+    }
   },
+  {
+    id: "basil-stir-fry",
+    name: "Basil Stir-fry",
+    description: "Stir-fried meat with basil leaves, chili, and garlic.",
+    price: 12.99,
+    image: "https://images.pexels.com/photos/6646351/pexels-photo-6646351.jpeg",
+    category: "mainDishes",
+    isSpicy: true,
+    customizations: {
+      protein: ["Chicken", "Pork", "Beef", "Tofu"],
+      spiceLevel: ["Mild", "Medium", "Hot"],
+    },
+    localizedNames: {
+      en: "Basil Stir-fry",
+      th: "ผัดกะเพรา",
+      "zh-cn": "九层塔炒肉",
+      "zh-tw": "九層塔炒肉"
+    },
+    localizedDescriptions: {
+      en: "Stir-fried meat with basil leaves, chili, and garlic.",
+      th: "เนื้อสัตว์ผัดกับใบกะเพรา พริก และกระเทียม",
+      "zh-cn": "肉类与罗勒叶，辣椒和蒜蓉炒",
+      "zh-tw": "肉類與羅勒葉，辣椒和蒜蓉炒"
+    }
+  },
+  {
+    id: "massaman-curry",
+    name: "Massaman Curry",
+    description: "A mild, flavorful curry with potatoes, onions, peanuts, and coconut milk.",
+    price: 14.99,
+    image: "https://www.foodiesfeed.com/wp-content/uploads/ff-images/2024/12/flavorful-chicken-curry-with-potatoes-and-herbs.jpg",
+    category: "mainDishes",
+    customizations: {
+      protein: ["Chicken", "Beef", "Tofu", "Vegetable"],
+    },
+    localizedNames: {
+      en: "Massaman Curry",
+      th: "แกงมัสมั่น",
+      "zh-cn": "马沙文咖喱",
+      "zh-tw": "馬沙文咖哩"
+    },
+    localizedDescriptions: {
+      en: "A mild, flavorful curry with potatoes, onions, peanuts, and coconut milk.",
+      th: "แกงรสชาติอ่อน ๆ แต่หอมกับมันฝรั่ง หัวหอม ถั่วลิสง และกะทิ",
+      "zh-cn": "温和味美的咖喱，配有土豆，洋葱，花生和椰奶",
+      "zh-tw": "溫和味美的咖哩，配有馬鈴薯，洋蔥，花生和椰奶"
+    }
+  },
+  
+  // Soups
+  {
+    id: "tom-yum-goong",
+    name: "Tom Yum Goong",
+    description: "Hot and sour shrimp soup with lemongrass, galangal, and kaffir lime leaves.",
+    price: 8.99,
+    image: "https://www.freepik.com/free-photo/high-angle-delicious-shrimp-meal_24595446.htm",
+    category: "soups",
+    isSpicy: true,
+    customizations: {
+      spiceLevel: ["Mild", "Medium", "Hot"],
+    },
+    localizedNames: {
+      en: "Tom Yum Goong",
+      th: "ต้มยำกุ้ง",
+      "zh-cn": "冬阴功汤",
+      "zh-tw": "冬陰功湯"
+    },
+    localizedDescriptions: {
+      en: "Hot and sour shrimp soup with lemongrass, galangal, and kaffir lime leaves.",
+      th: "ซุปกุ้งรสเปรี้ยวเผ็ดกับตะไคร้ ข่า และใบมะกรูด",
+      "zh-cn": "酸辣虾汤配香茅，南姜和柠檬叶",
+      "zh-tw": "酸辣蝦湯配香茅，南薑和檸檬葉"
+    }
+  },
+  {
+    id: "tom-kha-gai",
+    name: "Tom Kha Gai",
+    description: "Coconut milk soup with chicken, galangal, and mushrooms.",
+    price: 7.99,
+    image: "https://www.freepik.com/free-photo/tom-kha-kai-bowl-with-kaffir-lime-leaves-lemongrass-red-onion-galangal-chilli_29538393.htm",
+    category: "soups",
+    localizedNames: {
+      en: "Tom Kha Gai",
+      th: "ต้มข่าไก่",
+      "zh-cn": "椰奶鸡汤",
+      "zh-tw": "椰奶雞湯"
+    },
+    localizedDescriptions: {
+      en: "Coconut milk soup with chicken, galangal, and mushrooms.",
+      th: "ซุปกะทิกับไก่ ข่า และเห็ด",
+      "zh-cn": "椰奶鸡汤配南姜和蘑菇",
+      "zh-tw": "椰奶雞湯配南薑和蘑菇"
+    }
+  },
+  {
+    id: "clear-noodle-soup",
+    name: "Clear Noodle Soup",
+    description: "Clear broth with rice noodles, meat, and vegetables.",
+    price: 7.99,
+    image: "https://www.freepik.com/free-photo/thai-food-noodles-with-pork-meatball-vegetable_3372585.htm",
+    category: "soups",
+    customizations: {
+      protein: ["Chicken", "Pork", "Beef", "Tofu"],
+    },
+    localizedNames: {
+      en: "Clear Noodle Soup",
+      th: "ก๋วยเตี๋ยวน้ำใส",
+      "zh-cn": "清汤面",
+      "zh-tw": "清湯麵"
+    },
+    localizedDescriptions: {
+      en: "Clear broth with rice noodles, meat, and vegetables.",
+      th: "น้ำซุปใสกับก๋วยเตี๋ยว เนื้อสัตว์ และผัก",
+      "zh-cn": "清汤配米粉，肉类和蔬菜",
+      "zh-tw": "清湯配米粉，肉類和蔬菜"
+    }
+  },
+
+  // Appetizers
+  {
+    id: "spring-rolls",
+    name: "Spring Rolls",
+    description: "Crispy spring rolls filled with vegetables and glass noodles.",
+    price: 6.99,
+    image: "https://www.freepik.com/free-photo/deep-fried-spring-rolls_1197825.htm",
+    category: "appetizers",
+    isVegetarian: true,
+    localizedNames: {
+      en: "Spring Rolls",
+      th: "ปอเปี๊ยะทอด",
+      "zh-cn": "春卷",
+      "zh-tw": "春捲"
+    },
+    localizedDescriptions: {
+      en: "Crispy spring rolls filled with vegetables and glass noodles.",
+      th: "ปอเปี๊ยะทอดกรอบไส้ผักและวุ้นเส้น",
+      "zh-cn": "酥脆春卷配蔬菜和粉丝",
+      "zh-tw": "酥脆春捲配蔬菜和粉絲"
+    }
+  },
+  {
+    id: "chicken-wings",
+    name: "Thai Style Chicken Wings",
+    description: "Fried chicken wings marinated in fish sauce and garlic.",
+    price: 8.99,
+    image: "https://www.freepik.com/free-photo/fried-chicken-wings-fish-sauce_1197820.htm",
+    category: "appetizers",
+    localizedNames: {
+      en: "Thai Style Chicken Wings",
+      th: "ปีกไก่ทอดน้ำปลา",
+      "zh-cn": "泰式炸鸡翅",
+      "zh-tw": "泰式炸雞翅"
+    },
+    localizedDescriptions: {
+      en: "Fried chicken wings marinated in fish sauce and garlic.",
+      th: "ปีกไก่ทอดหมักด้วยน้ำปลาและกระเทียม",
+      "zh-cn": "鱼露和大蒜腌制的炸鸡翅",
+      "zh-tw": "魚露和大蒜醃製的炸雞翅"
+    }
+  },
+  {
+    id: "satay",
+    name: "Satay",
+    description: "Grilled skewers of marinated meat served with peanut sauce.",
+    price: 8.99,
+    image: "https://www.freepik.com/free-photo/pork-satay-with-peanut-sauce-sweet-sour-sauce-thai-food_3372579.htm",
+    category: "appetizers",
+    customizations: {
+      protein: ["Chicken", "Pork", "Beef"],
+    },
+    localizedNames: {
+      en: "Satay",
+      th: "สะเต๊ะ",
+      "zh-cn": "沙爹",
+      "zh-tw": "沙爹"
+    },
+    localizedDescriptions: {
+      en: "Grilled skewers of marinated meat served with peanut sauce.",
+      th: "เนื้อสัตว์หมักย่างเสิร์ฟพร้อมน้ำจิ้มถั่ว",
+      "zh-cn": "烤腌肉串配花生酱",
+      "zh-tw": "烤醃肉串配花生醬"
+    }
+  },
+
+  // Salads
+  {
+    id: "papaya-salad",
+    name: "Papaya Salad",
+    description: "Spicy green papaya salad with tomatoes, peanuts, and lime.",
+    price: 9.99,
+    image: "https://www.freepik.com/free-photo/papaya-salad-som-tum-thai-white-plate-wooden-table_15548489.htm",
+    category: "salads",
+    isSpicy: true,
+    isVegetarian: true,
+    customizations: {
+      spiceLevel: ["Mild", "Medium", "Hot", "Thai Hot"],
+    },
+    localizedNames: {
+      en: "Papaya Salad",
+      th: "ส้มตำ",
+      "zh-cn": "青木瓜沙拉",
+      "zh-tw": "青木瓜沙拉"
+    },
+    localizedDescriptions: {
+      en: "Spicy green papaya salad with tomatoes, peanuts, and lime.",
+      th: "ส้มตำรสเผ็ดกับมะเขือเทศ ถั่วลิสง และมะนาว",
+      "zh-cn": "辣青木瓜沙拉配番茄，花生和酸橙",
+      "zh-tw": "辣青木瓜沙拉配番茄，花生和酸橙"
+    }
+  },
+  {
+    id: "glass-noodle-salad",
+    name: "Glass Noodle Salad",
+    description: "Spicy salad with glass noodles, minced meat, and herbs.",
+    price: 10.99,
+    image: "https://www.freepik.com/free-photo/pad-thai-fresh-shrimp-white-plate_3372578.htm",
+    category: "salads",
+    isSpicy: true,
+    customizations: {
+      protein: ["Chicken", "Pork", "Seafood"],
+    },
+    localizedNames: {
+      en: "Glass Noodle Salad",
+      th: "ยำวุ้นเส้น",
+      "zh-cn": "粉丝沙拉",
+      "zh-tw": "粉絲沙拉"
+    },
+    localizedDescriptions: {
+      en: "Spicy salad with glass noodles, minced meat, and herbs.",
+      th: "ยำรสเผ็ดกับวุ้นเส้น เนื้อสับ และสมุนไพร",
+      "zh-cn": "辣粉丝沙拉配肉末和香草",
+      "zh-tw": "辣粉絲沙拉配肉末和香草"
+    }
+  },
+  {
+    id: "beef-salad",
+    name: "Spicy Beef Salad",
+    description: "Grilled beef with cucumber, tomatoes, and herbs in spicy dressing.",
+    price: 12.99,
+    image: "https://www.freepik.com/free-photo/boiled-pork-ribs-white-cup-piece-fabric-wooden-table_3372580.htm",
+    category: "salads",
+    isSpicy: true,
+    localizedNames: {
+      en: "Spicy Beef Salad",
+      th: "ยำเนื้อ",
+      "zh-cn": "泰式牛肉沙拉",
+      "zh-tw": "泰式牛肉沙拉"
+    },
+    localizedDescriptions: {
+      en: "Grilled beef with cucumber, tomatoes, and herbs in spicy dressing.",
+      th: "เนื้อย่างกับแตงกวา มะเขือเทศ และสมุนไพรในน้ำยำรสเผ็ด",
+      "zh-cn": "烤牛肉配黄瓜，番茄和香草，淋上辣酱汁",
+      "zh-tw": "烤牛肉配黃瓜，番茄和香草，淋上辣醬汁"
+    }
+  },
+
+  // Beverages
+  {
+    id: "coconut-water",
+    name: "Coconut Water",
+    description: "Fresh coconut water served in the shell.",
+    price: 4.99,
+    image: "https://www.freepik.com/free-photo/glass-coconut-water-put-dark-wooden-background_3211267.htm",
+    category: "beverages",
+    isVegetarian: true,
+    localizedNames: {
+      en: "Coconut Water",
+      th: "น้ำมะพร้าว",
+      "zh-cn": "椰子水",
+      "zh-tw": "椰子水"
+    },
+    localizedDescriptions: {
+      en: "Fresh coconut water served in the shell.",
+      th: "น้ำมะพร้าวสดเสิร์ฟในกะลา",
+      "zh-cn": "新鲜椰子水，连壳上桌",
+      "zh-tw": "新鮮椰子水，連殼上桌"
+    }
+  },
+  {
+    id: "lemongrass-drink",
+    name: "Lemongrass Drink",
+    description: "Refreshing lemongrass tea with honey.",
+    price: 3.99,
+    image: "https://www.freepik.com/free-photo/lemongrass-honey-lemon-juice-food-beverage-products-from-lemongrass-extract-food-nutrition-concept_22255873.htm",
+    category: "beverages",
+    isVegetarian: true,
+    localizedNames: {
+      en: "Lemongrass Drink",
+      th: "น้ำตะไคร้",
+      "zh-cn": "柠檬草茶",
+      "zh-tw": "檸檬草茶"
+    },
+    localizedDescriptions: {
+      en: "Refreshing lemongrass tea with honey.",
+      th: "ชาตะไคร้สดชื่นกับน้ำผึ้ง",
+      "zh-cn": "清新的柠檬草茶配蜂蜜",
+      "zh-tw": "清新的檸檬草茶配蜂蜜"
+    }
+  },
+  {
+    id: "thai-tea",
+    name: "Thai Tea",
+    description: "Sweet and creamy Thai tea.",
+    price: 3.99,
+    image: "https://images.unsplash.com/photo-1617975414786-cfb9a43974d1",
+    category: "beverages",
+    isVegetarian: true,
+    localizedNames: {
+      en: "Thai Tea",
+      th: "ชาไทย",
+      "zh-cn": "泰式奶茶",
+      "zh-tw": "泰式奶茶"
+    },
+    localizedDescriptions: {
+      en: "Sweet and creamy Thai tea.",
+      th: "ชาไทยรสหวานและครีมมี่",
+      "zh-cn": "香甜浓郁的泰式奶茶",
+      "zh-tw": "香甜濃郁的泰式奶茶"
+    }
+  },
+  {
+    id: "roselle-juice",
+    name: "Roselle Juice",
+    description: "Sweet-tart hibiscus tea served cold.",
+    price: 3.99,
+    image: "https://www.freepik.com/free-photo/refreshing-hibiscus-ice-tea-clear-glass-container_39915790.htm",
+    category: "beverages",
+    isVegetarian: true,
+    localizedNames: {
+      en: "Roselle Juice",
+      th: "น้ำกระเจี๊ยบ",
+      "zh-cn": "洛神花茶",
+      "zh-tw": "洛神花茶"
+    },
+    localizedDescriptions: {
+      en: "Sweet-tart hibiscus tea served cold.",
+      th: "ชากระเจี๊ยบรสหวานอมเปรี้ยวเสิร์ฟเย็น",
+      "zh-cn": "酸甜的冰镇洛神花茶",
+      "zh-tw": "酸甜的冰鎮洛神花茶"
+    }
+  },
+  {
+    id: "chrysanthemum-tea",
+    name: "Chrysanthemum Tea",
+    description: "Fragrant tea made from dried chrysanthemum flowers.",
+    price: 3.99,
+    image: "https://www.freepik.com/free-photo/chamomile-tea-cups-arrangement_36929317.htm",
+    category: "beverages",
+    isVegetarian: true,
+    localizedNames: {
+      en: "Chrysanthemum Tea",
+      th: "น้ำเก๊กฮวย",
+      "zh-cn": "菊花茶",
+      "zh-tw": "菊花茶"
+    },
+    localizedDescriptions: {
+      en: "Fragrant tea made from dried chrysanthemum flowers.",
+      th: "ชาที่มีกลิ่นหอมทำจากดอกเก๊กฮวยแห้ง",
+      "zh-cn": "由干菊花制作的香茶",
+      "zh-tw": "由乾菊花製作的香茶"
+    }
+  },
+
+  // More classic Thai dishes
   {
     id: "red-curry",
     name: "Red Curry",
     description: "Red curry with coconut milk, bell peppers, and basil.",
     price: 13.99,
-    image: "https://images.unsplash.com/photo-1664299885444-4183b546999f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    category: "entrees",
+    image: "https://images.unsplash.com/photo-1664299885444-4183b546999f",
+    category: "mainDishes",
     isSpicy: true,
     customizations: {
       protein: ["Chicken", "Beef", "Tofu", "Vegetable"],
       spiceLevel: ["Mild", "Medium", "Hot"],
     },
-  },
-   {
-    id: "massaman-curry",
-    name: "Massaman Curry",
-    description: "A mild, flavorful curry with potatoes, onions, peanuts, and coconut milk.",
-    price: 14.99,
-    image: "https://images.unsplash.com/photo-1635442947345-196799494343?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    category: "entrees",
-    customizations: {
-      protein: ["Chicken", "Beef", "Tofu", "Vegetable"],
+    localizedNames: {
+      en: "Red Curry",
+      th: "แกงเผ็ด",
+      "zh-cn": "红咖喱",
+      "zh-tw": "紅咖哩"
     },
-  },
-  {
-    id: "pineapple-fried-rice",
-    name: "Pineapple Fried Rice",
-    description: "Fried rice with pineapple, shrimp, chicken, cashews, and raisins.",
-    price: 12.99,
-    image: "https://images.unsplash.com/photo-1600828354463-5b882965c737?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    category: "rice",
-    customizations: {
-      protein: ["Chicken", "Shrimp", "Tofu", "Vegetable"],
-    },
+    localizedDescriptions: {
+      en: "Red curry with coconut milk, bell peppers, and basil.",
+      th: "แกงเผ็ดกับกะทิ พริกหวาน และใบโหระพา",
+      "zh-cn": "红咖喱配椰奶，甜椒和罗勒",
+      "zh-tw": "紅咖哩配椰奶，甜椒和羅勒"
+    }
   },
   {
     id: "mango-sticky-rice",
     name: "Mango Sticky Rice",
     description: "Sweet sticky rice with fresh mango and coconut milk.",
     price: 8.99,
-    image: "https://images.unsplash.com/photo-1611824744754-679842e210c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "https://images.unsplash.com/photo-1611824744754-679842e210c4",
     category: "desserts",
     isVegetarian: true,
-  },
-  {
-    id: "thai-iced-tea",
-    name: "Thai Iced Tea",
-    description: "Sweet and creamy Thai iced tea.",
-    price: 3.99,
-    image: "https://images.unsplash.com/photo-1617975414786-cfb9a43974d1?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    category: "beverages",
-    isVegetarian: true,
-  },
-   {
-    id: "pad-see-ew",
-    name: "Pad See Ew",
-    description: "Stir-fried wide rice noodles with egg, Chinese broccoli, and a sweet soy sauce.",
-    price: 12.99,
-    image: "https://example.com/pad-see-ew.jpg",
-    category: "noodles",
-     customizations: {
-      protein: ["Chicken", "Pork", "Tofu", "Shrimp", "Vegetable"],
+    localizedNames: {
+      en: "Mango Sticky Rice",
+      th: "ข้าวเหนียวมะม่วง",
+      "zh-cn": "芒果糯米饭",
+      "zh-tw": "芒果糯米飯"
     },
-  },
-  {
-    id: "red-snapper",
-    name: "Steamed Red Snapper",
-    description: "Steamed Red Snapper with chili-lime sauce.",
-    price: 21.99,
-    image: "https://example.com/red-snapper.jpg",
-    category: "specials",
-    isSpicy: true,
-  },
-  {
-    id: "vegetarian-spring-rolls",
-    name: "Vegetarian Spring Rolls",
-    description: "Crispy spring rolls filled with vegetables and glass noodles.",
-    price: 7.99,
-    image: "https://example.com/veg-spring-rolls.jpg",
-    category: "vegetarian",
-    isVegetarian: true,
-  },
-   {
-    id: "tofu-green-curry",
-    name: "Tofu Green Curry",
-    description: "Green curry with coconut milk, bamboo shoots, tofu and vegetables.",
-    price: 12.99,
-    image: "https://example.com/tofu-green-curry.jpg",
-    category: "vegetarian",
-    isVegetarian: true,
-    isSpicy: true,
-    customizations: {
-      spiceLevel: ["Mild", "Medium", "Hot"],
-    },
-  },
-  {
-    id: "vegetable-pad-thai",
-    name: "Vegetable Pad Thai",
-    description: "Stir-fried rice noodles with tofu, peanuts, and bean sprouts.",
-    price: 10.99,
-    image: "https://example.com/veg-pad-thai.jpg",
-    category: "vegetarian",
-    isVegetarian: true,
-  },
-  {
-    id: "jasmine-rice",
-    name: "Jasmine Rice",
-    description: "Steamed jasmine rice.",
-    price: 2.99,
-    image: "https://example.com/jasmine-rice.jpg",
-    category: "rice",
-    isVegetarian: true,
-  },
-  {
-    id: "brown-rice",
-    name: "Brown Rice",
-    description: "Steamed brown rice.",
-    price: 3.99,
-    image: "https://example.com/brown-rice.jpg",
-    category: "rice",
-    isVegetarian: true,
-  },
-  {
-    id: "thai-coffee",
-    name: "Thai Coffee",
-    description: "Sweet and creamy Thai coffee.",
-    price: 3.99,
-    image: "https://example.com/thai-coffee.jpg",
-    category: "beverages",
-    isVegetarian: true,
-  },
-  {
-    id: "coconut-juice",
-    name: "Coconut Juice",
-    description: "Fresh coconut juice.",
-    price: 4.99,
-    image: "https://example.com/coconut-juice.jpg",
-    category: "beverages",
-    isVegetarian: true,
-  },
-  {
-    id: "sticky-rice-with-taro",
-    name: "Sticky Rice with Taro",
-    description: "Sweet sticky rice with taro and coconut milk.",
-    price: 9.99,
-    image: "https://example.com/sticky-rice-taro.jpg",
-    category: "desserts",
-    isVegetarian: true,
-  },
-  {
-    id: "banana-spring-rolls",
-    name: "Banana Spring Rolls",
-    description: "Crispy spring rolls filled with banana and chocolate.",
-    price: 7.99,
-    image: "https://example.com/banana-spring-rolls.jpg",
-    category: "desserts",
-  },
-  {
-    id: "cashew-chicken",
-    name: "Cashew Chicken",
-    description: "Stir-fried chicken with cashews, vegetables, and a savory sauce.",
-    price: 13.99,
-    image: "https://example.com/cashew-chicken.jpg",
-    category: "entrees",
-    customizations: {
-      spiceLevel: ["Mild", "Medium", "Hot"],
-    },
-  },
-  {
-    id: "pra-ram",
-    name: "Pra Ram",
-    description: "Steamed mixed vegetables and peanut sauce.",
-    price: 11.99,
-    image: "https://example.com/pra-ram.jpg",
-    category: "vegetarian",
-    isVegetarian: true,
-  },
-  {
-    id: "pad-kra-pao",
-    name: "Pad Kra Pao",
-    description: "Stir-fried meat with basil, chili, garlic, and a fried egg on top.",
-    price: 12.99,
-    image: "https://example.com/pad-kra-pao.jpg",
-    category: "entrees",
-    isSpicy: true,
-    customizations: {
-      protein: ["Chicken", "Pork", "Beef", "Tofu"],
-      spiceLevel: ["Mild", "Medium", "Hot"],
-    },
-  },
-  {
-    id: "panang-curry",
-    name: "Panang Curry",
-    description: "A rich and creamy curry with coconut milk, bell peppers, and lime leaves.",
-    price: 14.99,
-    image: "https://example.com/panang-curry.jpg",
-    category: "entrees",
-    customizations: {
-      protein: ["Chicken", "Beef", "Tofu", "Vegetable"],
-      spiceLevel: ["Mild", "Medium", "Hot"],
-    },
-  },
-  {
-    id: "yellow-curry",
-    name: "Yellow Curry",
-    description: "A mild and flavorful curry with potatoes, carrots, and coconut milk.",
-    price: 13.99,
-    image: "https://example.com/yellow-curry.jpg",
-    category: "entrees",
-    customizations: {
-      protein: ["Chicken", "Beef", "Tofu", "Vegetable"],
-    },
-  },
-  {
-    id: "mango-salad",
-    name: "Mango Salad",
-    description: "Fresh mango with red onions, mint, and a tangy dressing.",
-    price: 9.99,
-    image: "https://example.com/mango-salad.jpg",
-    category: "salads",
-    isVegetarian: true,
-  },
-  {
-    id: "larb",
-    name: "Larb",
-    description: "A flavorful minced meat salad with herbs, chili, and lime juice.",
-    price: 11.99,
-    image: "https://example.com/larb.jpg",
-    category: "salads",
-    isSpicy: true,
-    customizations: {
-      protein: ["Chicken", "Pork", "Tofu"],
-      spiceLevel: ["Mild", "Medium", "Hot"],
-    },
-  },
-  {
-    id: "som-tum-thai",
-    name: "Som Tum Thai",
-    description: "The classic green papaya salad with peanuts, tomatoes, and a spicy dressing.",
-    price: 10.99,
-    image: "https://example.com/som-tum-thai.jpg",
-    category: "salads",
-    isSpicy: true,
-    isVegetarian: true,
-  },
-  {
-    id: "kao-pad",
-    name: "Kao Pad",
-    description: "Thai fried rice with egg, vegetables, and your choice of protein.",
-    price: 11.99,
-    image: "https://example.com/kao-pad.jpg",
-    category: "rice",
-    customizations: {
-      protein: ["Chicken", "Pork", "Beef", "Tofu", "Shrimp"],
-    },
-  },
-  {
-    id: "pad-kee-mao",
-    name: "Pad Kee Mao",
-    description: "Drunken noodles with a flavorful sauce, vegetables, and your choice of protein.",
-    price: 12.99,
-    image: "https://example.com/pad-kee-mao.jpg",
-    category: "noodles",
-    isSpicy: true,
-    customizations: {
-      protein: ["Chicken", "Pork", "Beef", "Tofu", "Shrimp"],
-      spiceLevel: ["Mild", "Medium", "Hot"],
-    },
-  },
-  {
-    id: "kuay-teow-reua",
-    name: "Kuay Teow Reua",
-    description: "Thai boat noodles soup with a rich and flavorful broth.",
-    price: 13.99,
-    image: "https://example.com/kuay-teow-reua.jpg",
-    category: "soups",
-  },
-  {
-    id: "gaeng-keow-wan",
-    name: "Gaeng Keow Wan",
-    description: "Thai green curry with coconut milk, bamboo shoots, and your choice of protein.",
-    price: 14.99,
-    image: "https://example.com/gaeng-keow-wan.jpg",
-    category: "entrees",
-    isSpicy: true,
-    customizations: {
-      protein: ["Chicken", "Beef", "Tofu", "Vegetable"],
-      spiceLevel: ["Mild", "Medium", "Hot"],
-    },
-  },
-  {
-    id: "pla-nueng-manao",
-    name: "Pla Nueng Manao",
-    description: "Steamed fish with a spicy lime sauce.",
-    price: 22.99,
-    image: "https://example.com/pla-nueng-manao.jpg",
-    category: "specials",
-    isSpicy: true,
-  },
-  {
-    id: "khao-niao-mamuang",
-    name: "Khao Niao Mamuang",
-    description: "Sweet sticky rice with fresh mango and coconut milk.",
-    price: 9.99,
-    image: "https://example.com/khao-niao-mamuang.jpg",
-    category: "desserts",
-    isVegetarian: true,
-  },
-  {
-    id: "kluay-buat-chee",
-    name: "Kluay Buat Chee",
-    description: "Bananas in warm coconut milk.",
-    price: 7.99,
-    image: "https://example.com/kluay-buat-chee.jpg",
-    category: "desserts",
-    isVegetarian: true,
-  },
-  {
-    id: "nam-manao",
-    name: "Nam Manao",
-    description: "Thai limeade.",
-    price: 3.99,
-    image: "https://example.com/nam-manao.jpg",
-    category: "beverages",
-    isVegetarian: true,
-  },
-  {
-    id: "cha-yen",
-    name: "Cha Yen",
-    description: "Thai iced tea with milk.",
-    price: 4.99,
-    image: "https://example.com/cha-yen.jpg",
-    category: "beverages",
-    isVegetarian: true,
-  },
-  {
-    id: "tom-yum-goong",
-    name: "Tom Yum Goong",
-    description: "Classic hot and sour soup with shrimp, lemongrass, and galangal.",
-    price: 9.99,
-    image: "https://example.com/tom-yum-goong.jpg",
-    category: "soups",
-    isSpicy: true,
-    customizations: {
-      spiceLevel: ["Hot", "Medium", "Mild"],
-      addOns: [
-        { id: "extra-shrimp", name: "Extra Shrimp", price: 3.00 },
-        { id: "mushrooms", name: "Mushrooms", price: 1.50 },
-      ],
-    },
+    localizedDescriptions: {
+      en: "Sweet sticky rice with fresh mango and coconut milk.",
+      th: "ข้าวเหนียวหวานกับมะม่วงสดและกะทิ",
+      "zh-cn": "甜糯米配新鲜芒果和椰奶",
+      "zh-tw": "甜糯米配新鮮芒果和椰奶"
+    }
   },
 ];
