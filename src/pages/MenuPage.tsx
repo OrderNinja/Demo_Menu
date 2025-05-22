@@ -21,6 +21,10 @@ const MenuPage: React.FC = () => {
   const [filteredItems, setFilteredItems] = useState(menuItems.filter(item => item.category === activeCategory));
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
+  // Split categories into two rows
+  const firstRowCategories = categories.slice(0, Math.ceil(categories.length / 2));
+  const secondRowCategories = categories.slice(Math.ceil(categories.length / 2));
+
   // Redirect to landing if user info is not complete
   useEffect(() => {
     if (!isInfoComplete) {
@@ -60,12 +64,26 @@ const MenuPage: React.FC = () => {
         </div>
       </header>
       
-      {/* Category tabs - horizontal below header */}
-      <div className="bg-white shadow-md py-2 sticky top-0 z-10">
+      {/* Category tabs - now in two rows */}
+      <div className="bg-white shadow-md py-3 sticky top-0 z-10">
         <div className="container mx-auto px-4">
           <Tabs defaultValue={activeCategory} onValueChange={setActiveCategory}>
-            <TabsList className="w-full h-auto flex overflow-x-auto pb-1 justify-start md:justify-center gap-1">
-              {categories.map(category => (
+            {/* First row of categories */}
+            <TabsList className="w-full h-auto flex overflow-x-auto pb-1 justify-center gap-1 mb-2">
+              {firstRowCategories.map(category => (
+                <TabsTrigger 
+                  key={category.id} 
+                  value={category.id}
+                  className="px-4 py-2 whitespace-nowrap data-[state=active]:bg-restaurant-primary data-[state=active]:text-white"
+                >
+                  {t(`categories.${category.id}`, category.name)}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+            
+            {/* Second row of categories */}
+            <TabsList className="w-full h-auto flex overflow-x-auto pb-1 justify-center gap-1">
+              {secondRowCategories.map(category => (
                 <TabsTrigger 
                   key={category.id} 
                   value={category.id}
