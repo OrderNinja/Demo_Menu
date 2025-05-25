@@ -61,7 +61,7 @@ export const menuItems: MenuItem[] = [
     name: "Pad Thai",
     description: "Stir-fried rice noodles with shrimp, tofu, peanuts, and bean sprouts.",
     price: 11.99,
-    image: "https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg",
+    image: "https://images.pexels.com/photos/2827263/pexels-photo-2827263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     category: "mainDishes",
     customizations: {
       protein: ["Chicken", "Shrimp", "Tofu", "Vegetable"],
@@ -84,7 +84,7 @@ export const menuItems: MenuItem[] = [
     name: "Green Curry",
     description: "Green curry with coconut milk, bamboo shoots, and vegetables.",
     price: 13.99,
-    image: "https://images.pexels.com/photos/2942934/pexels-photo-2942934.jpeg",
+    image: "https://images.pexels.com/photos/31029754/pexels-photo-31029754/free-photo-of-delicious-thai-green-curry-with-vegetables.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     category: "mainDishes",
     isSpicy: true,
     customizations: {
@@ -109,7 +109,7 @@ export const menuItems: MenuItem[] = [
     name: "Basil Stir-fry",
     description: "Stir-fried meat with basil leaves, chili, and garlic.",
     price: 12.99,
-    image: "https://images.pexels.com/photos/6646351/pexels-photo-6646351.jpeg",
+    image: "https://images.pexels.com/photos/12153472/pexels-photo-12153472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     category: "mainDishes",
     isSpicy: true,
     customizations: {
@@ -159,7 +159,7 @@ export const menuItems: MenuItem[] = [
     name: "Tom Yum Goong",
     description: "Hot and sour shrimp soup with lemongrass, galangal, and kaffir lime leaves.",
     price: 8.99,
-    image: "https://www.freepik.com/free-photo/high-angle-delicious-shrimp-meal_24595446.htm",
+    image: "https://hot-thai-kitchen.com/wp-content/uploads/2013/03/tom-yum-goong-blog.jpg",
     category: "soups",
     isSpicy: true,
     customizations: {
@@ -183,7 +183,7 @@ export const menuItems: MenuItem[] = [
     name: "Tom Kha Gai",
     description: "Coconut milk soup with chicken, galangal, and mushrooms.",
     price: 7.99,
-    image: "https://www.freepik.com/free-photo/tom-kha-kai-bowl-with-kaffir-lime-leaves-lemongrass-red-onion-galangal-chilli_29538393.htm",
+    image: "https://creativescookery.com/wp-content/uploads/2024/10/Tom-Kha-Gai-Soup-Thai-Coconut-Soup-1.webp",
     category: "soups",
     localizedNames: {
       en: "Tom Kha Gai",
@@ -203,7 +203,7 @@ export const menuItems: MenuItem[] = [
     name: "Clear Noodle Soup",
     description: "Clear broth with rice noodles, meat, and vegetables.",
     price: 7.99,
-    image: "https://www.freepik.com/free-photo/thai-food-noodles-with-pork-meatball-vegetable_3372585.htm",
+    image: "https://hot-thai-kitchen.com/wp-content/uploads/2023/11/gaeng-jeud-woon-sen-sq.jpg",
     category: "soups",
     customizations: {
       protein: ["Chicken", "Pork", "Beef", "Tofu"],
@@ -228,7 +228,7 @@ export const menuItems: MenuItem[] = [
     name: "Spring Rolls",
     description: "Crispy spring rolls filled with vegetables and glass noodles.",
     price: 6.99,
-    image: "https://www.freepik.com/free-photo/deep-fried-spring-rolls_1197825.htm",
+    image: "https://www.marionskitchen.com/wp-content/uploads/2021/06/20170828_spring-roll-FB-Live-3-1200x1500.jpeg",
     category: "appetizers",
     isVegetarian: true,
     localizedNames: {
@@ -249,7 +249,7 @@ export const menuItems: MenuItem[] = [
     name: "Thai Style Chicken Wings",
     description: "Fried chicken wings marinated in fish sauce and garlic.",
     price: 8.99,
-    image: "https://www.freepik.com/free-photo/fried-chicken-wings-fish-sauce_1197820.htm",
+    image: "https://www.shemins.com/wp-content/uploads/2017/07/shemins-thai-chicken-wings.jpg",
     category: "appetizers",
     localizedNames: {
       en: "Thai Style Chicken Wings",
@@ -294,7 +294,7 @@ export const menuItems: MenuItem[] = [
     name: "Papaya Salad",
     description: "Spicy green papaya salad with tomatoes, peanuts, and lime.",
     price: 9.99,
-    image: "https://www.freepik.com/free-photo/papaya-salad-som-tum-thai-white-plate-wooden-table_15548489.htm",
+    image: "https://www.seriouseats.com/thmb/yKNZ9ICJC5ZNhzcYHdHENxogpFw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/20210928-Som-Tam-Thai-green-papaya-salad-vicky-wasik-24-f0d666fc609f49a0b9f34897bd2c6303.jpg",
     category: "salads",
     isSpicy: true,
     isVegetarian: true,
@@ -319,7 +319,7 @@ export const menuItems: MenuItem[] = [
     name: "Glass Noodle Salad",
     description: "Spicy salad with glass noodles, minced meat, and herbs.",
     price: 10.99,
-    image: "https://www.freepik.com/free-photo/pad-thai-fresh-shrimp-white-plate_3372578.htm",
+    image: "https://cicili.tv/wp-content/uploads/2019/05/Yum-Woon-Sen-2-scaled.jpg",
     category: "salads",
     isSpicy: true,
     customizations: {
@@ -343,7 +343,7 @@ export const menuItems: MenuItem[] = [
     name: "Spicy Beef Salad",
     description: "Grilled beef with cucumber, tomatoes, and herbs in spicy dressing.",
     price: 12.99,
-    image: "https://www.freepik.com/free-photo/boiled-pork-ribs-white-cup-piece-fabric-wooden-table_3372580.htm",
+    image: "https://recipe30.com/wp-content/uploads/2021/08/Thai-beef-salad.jpg",
     category: "salads",
     isSpicy: true,
     localizedNames: {
@@ -366,7 +366,7 @@ export const menuItems: MenuItem[] = [
     name: "Coconut Water",
     description: "Fresh coconut water served in the shell.",
     price: 4.99,
-    image: "https://www.freepik.com/free-photo/glass-coconut-water-put-dark-wooden-background_3211267.htm",
+    image: "https://images.immediate.co.uk/production/volatile/sites/30/2024/06/Coconut-water440-c1acff0.jpg",
     category: "beverages",
     isVegetarian: true,
     localizedNames: {
@@ -387,7 +387,7 @@ export const menuItems: MenuItem[] = [
     name: "Lemongrass Drink",
     description: "Refreshing lemongrass tea with honey.",
     price: 3.99,
-    image: "https://www.freepik.com/free-photo/lemongrass-honey-lemon-juice-food-beverage-products-from-lemongrass-extract-food-nutrition-concept_22255873.htm",
+    image: "https://thewanderlustkitchen.com/wp-content/uploads/2015/06/Lemongrass-Tea-Recipe-33-2.jpg",
     category: "beverages",
     isVegetarian: true,
     localizedNames: {
@@ -408,7 +408,7 @@ export const menuItems: MenuItem[] = [
     name: "Roselle Juice",
     description: "Sweet-tart hibiscus tea served cold.",
     price: 3.99,
-    image: "https://www.freepik.com/free-photo/refreshing-hibiscus-ice-tea-clear-glass-container_39915790.htm",
+    image: "https://hungryinthailand.com/wp-content/uploads/2024/02/roselle-juice.webp",
     category: "beverages",
     isVegetarian: true,
     localizedNames: {
@@ -429,7 +429,7 @@ export const menuItems: MenuItem[] = [
     name: "Chrysanthemum Tea",
     description: "Fragrant tea made from dried chrysanthemum flowers.",
     price: 3.99,
-    image: "https://www.freepik.com/free-photo/chamomile-tea-cups-arrangement_36929317.htm",
+    image: "https://s3-us-east-2.amazonaws.com/production-sfc-web-app/recipe_images/images/000/000/466/original/Chrysanthemum_Tea.jpg?1691609031",
     category: "beverages",
     isVegetarian: true,
     localizedNames: {
