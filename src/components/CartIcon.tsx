@@ -74,7 +74,7 @@ const CartIcon: React.FC = () => {
       </SheetTrigger>
       <SheetContent className="w-full sm:max-w-md">
         <SheetHeader>
-          <SheetTitle className="text-restaurant-secondary">Your Cart</SheetTitle>
+          <SheetTitle className="text-black">Your Cart</SheetTitle>
         </SheetHeader>
         <div className="mt-6 flex flex-col gap-4">
           {items.length === 0 ? (
@@ -101,7 +101,7 @@ const CartIcon: React.FC = () => {
                           className="h-16 w-16 rounded-md object-cover"
                         />
                         <div>
-                          <h4 className="font-medium text-restaurant-secondary">{item.name}</h4>
+                          <h4 className="font-medium text-black">{item.name}</h4>
                           <p className="text-sm text-gray-500">${itemPrice.toFixed(2)}</p>
                           {formatCustomizations(item)}
                         </div>
@@ -139,7 +139,7 @@ const CartIcon: React.FC = () => {
               </div>
 
               <div className="border-t border-gray-200 pt-4">
-                <div className="flex justify-between text-restaurant-secondary font-bold">
+                <div className="flex justify-between text-black font-bold">
                   <span>Total:</span>
                   <span>${totalPrice.toFixed(2)}</span>
                 </div>
