@@ -269,7 +269,7 @@ export const menuItems: MenuItem[] = [
     name: "Satay",
     description: "Grilled skewers of marinated meat served with peanut sauce.",
     price: 8.99,
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS40aCJGkuii3hn_bvhhtI28w9DI-BVCJVXkQ&s",
+    image: "https://hot-thai-kitchen.com/wp-content/uploads/2015/02/satay-blog.jpg",
     category: "appetizers",
     customizations: {
       protein: ["Chicken", "Pork", "Beef"],
