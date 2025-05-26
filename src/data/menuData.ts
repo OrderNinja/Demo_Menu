@@ -269,7 +269,7 @@ export const menuItems: MenuItem[] = [
     name: "Satay",
     description: "Grilled skewers of marinated meat served with peanut sauce.",
     price: 8.99,
-    image: "https://www.freepik.com/free-photo/pork-satay-with-peanut-sauce-sweet-sour-sauce-thai-food_3372579.htm",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS40aCJGkuii3hn_bvhhtI28w9DI-BVCJVXkQ&s",
     category: "appetizers",
     customizations: {
       protein: ["Chicken", "Pork", "Beef"],
