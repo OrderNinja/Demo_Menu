@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizableLogo from "@/components/CustomizableLogo";
@@ -61,7 +62,7 @@ const OrderSummaryPage: React.FC = () => {
       <main className="flex-1 container mx-auto px-4 py-8">
         <Button 
           variant="ghost" 
-          className="flex items-center mb-6 text-black"
+          className="flex items-center mb-6 text-black hover:bg-gray-50 hover:text-gray-800 transition-all duration-200"
           onClick={() => navigate("/menu")}
         >
           <ArrowLeft className="mr-2 h-4 w-4" /> Back to Menu
