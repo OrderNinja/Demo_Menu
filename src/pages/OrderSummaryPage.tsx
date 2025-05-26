@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Logo from "@/components/Logo";
+import CustomizableLogo from "@/components/CustomizableLogo";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
 import { useUser } from "@/context/UserContext";
@@ -53,7 +53,7 @@ const OrderSummaryPage: React.FC = () => {
       {/* Header */}
       <header className="bg-white shadow-sm py-4 px-6">
         <div className="container mx-auto flex justify-between items-center">
-          <Logo />
+          <CustomizableLogo />
           <span className="text-gray-600">Order Summary</span>
         </div>
       </header>
@@ -61,7 +61,7 @@ const OrderSummaryPage: React.FC = () => {
       <main className="flex-1 container mx-auto px-4 py-8">
         <Button 
           variant="ghost" 
-          className="flex items-center mb-6 text-restaurant-secondary"
+          className="flex items-center mb-6 text-black"
           onClick={() => navigate("/menu")}
         >
           <ArrowLeft className="mr-2 h-4 w-4" /> Back to Menu

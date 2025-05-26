@@ -64,7 +64,7 @@ const CartIcon: React.FC = () => {
           size="icon" 
           className="relative"
         >
-          <ShoppingCart className="h-6 w-6 text-restaurant-secondary" />
+          <ShoppingCart className="h-6 w-6 text-black" />
           {totalItems > 0 && (
             <Badge className="absolute -top-2 -right-2 bg-restaurant-primary text-white">
               {totalItems}
