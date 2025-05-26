@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizableLogo from "@/components/CustomizableLogo";
@@ -62,12 +61,12 @@ const MenuPage: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-restaurant-secondary">
       {/* Header */}
-      <header className="bg-[#F2E8D5] py-4 px-6 text-restaurant-primary">
+      <header className="bg-[#F2E8D5] py-4 px-6 text-black">
         <div className="container mx-auto flex justify-between items-center">
           <CustomizableLogo />
           
           <div className="flex items-center gap-4">
-            <span className="hidden md:block text-restaurant-primary">
+            <span className="hidden md:block text-black">
               {t("ui.welcome")}, {userInfo.name}
             </span>
             <LanguageSwitcher />
@@ -100,7 +99,7 @@ const MenuPage: React.FC = () => {
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-6">
             <div className="h-10 w-2 bg-restaurant-primary"></div>
-            <h1 className="text-3xl font-bold text-restaurant-primary">
+            <h1 className="text-3xl font-bold text-black">
               {t(`categories.${activeCategory}`, categories.find(cat => cat.id === activeCategory)?.name || "")}
             </h1>
           </div>
@@ -130,7 +129,7 @@ const MenuPage: React.FC = () => {
       {totalItems > 0 && (
         <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t p-4">
           <div className="container mx-auto flex justify-between items-center">
-            <span className="font-medium text-restaurant-primary">
+            <span className="font-medium text-black">
               {totalItems} {totalItems === 1 ? t("ui.itemInCart") : t("ui.itemsInCart")}
             </span>
             <Button 
