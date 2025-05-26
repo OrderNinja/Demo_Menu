@@ -113,7 +113,7 @@ export const menuItems: MenuItem[] = [
     category: "mainDishes",
     isSpicy: true,
     customizations: {
-      protein: ["Chicken", "Pork", "Beef", "Tofu"],
+      protein: ["Chicken", "Pork", "Beef"],
       spiceLevel: ["Mild", "Medium", "Hot"],
     },
     localizedNames: {
