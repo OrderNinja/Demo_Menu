@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "@/components/Logo";
@@ -73,7 +72,7 @@ const OrderSummaryPage: React.FC = () => {
             <div className="w-20 h-20 rounded-full bg-green-100 mx-auto mb-6 flex items-center justify-center">
               <Check className="h-10 w-10 text-green-600" />
             </div>
-            <h1 className="text-3xl font-bold text-restaurant-secondary mb-4">Order Confirmed!</h1>
+            <h1 className="text-3xl font-bold text-black mb-4">Order Confirmed!</h1>
             <p className="text-gray-600 mb-6">
               Thank you for your order, {userInfo.name}. The kitchen is preparing your food!
             </p>
@@ -86,12 +85,12 @@ const OrderSummaryPage: React.FC = () => {
           </div>
         ) : (
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-3xl font-bold text-restaurant-secondary mb-6">Your Order</h1>
+            <h1 className="text-3xl font-bold text-black mb-6">Your Order</h1>
             
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               {/* Order items */}
               <div className="p-6">
-                <h2 className="text-xl font-semibold text-restaurant-secondary mb-4">Order Details</h2>
+                <h2 className="text-xl font-semibold text-black mb-4">Order Details</h2>
                 
                 <div className="space-y-4">
                   {items.map((item) => {
@@ -108,7 +107,7 @@ const OrderSummaryPage: React.FC = () => {
                             className="h-16 w-16 rounded-md object-cover"
                           />
                           <div>
-                            <h3 className="font-medium text-restaurant-secondary">{item.name}</h3>
+                            <h3 className="font-medium text-black">{item.name}</h3>
                             <p className="text-sm text-gray-500">
                               ${itemPrice.toFixed(2)}
                               {item.selectedCustomizations?.addOns && (
@@ -159,7 +158,7 @@ const OrderSummaryPage: React.FC = () => {
                             </button>
                           </div>
                           
-                          <span className="font-medium text-restaurant-secondary">
+                          <span className="font-medium text-black">
                             ${(itemPrice * item.quantity).toFixed(2)}
                           </span>
                           
@@ -180,7 +179,7 @@ const OrderSummaryPage: React.FC = () => {
               
               {/* Order summary - removed tax calculation */}
               <div className="bg-gray-50 p-6">
-                <div className="flex justify-between text-lg font-bold text-restaurant-secondary">
+                <div className="flex justify-between text-lg font-bold text-black">
                   <span>Total</span>
                   <span>${totalPrice.toFixed(2)}</span>
                 </div>
@@ -222,7 +221,7 @@ const OrderSummaryPage: React.FC = () => {
           </DialogHeader>
           
           <div className="py-4">
-            <h3 className="font-medium text-restaurant-secondary mb-2">Order Summary</h3>
+            <h3 className="font-medium text-black mb-2">Order Summary</h3>
             <div className="space-y-2">
               {items.map((item) => {
                 const itemPrice = calculateItemPrice(item);
