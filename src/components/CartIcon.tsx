@@ -1,6 +1,6 @@
-
 import React from "react";
-import { useCart, AddOnOption } from "@/context/CartContext";
+import { useCart } from "@/context/CartContext";
+import { AddOnOption } from "@/data/menuData";
 import { ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";

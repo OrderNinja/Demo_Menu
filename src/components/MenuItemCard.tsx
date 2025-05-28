@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { useCart, ItemCustomization, AddOnOption } from "@/context/CartContext";
-import { MenuItem } from "@/data/menuData";
+import { useCart, ItemCustomization } from "@/context/CartContext";
+import { MenuItem, AddOnOption } from "@/data/menuData";
 import { useLanguage } from "@/context/LanguageContext";
 import { Plus } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
