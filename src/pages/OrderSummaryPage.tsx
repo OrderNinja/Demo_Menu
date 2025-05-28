@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizableLogo from "@/components/CustomizableLogo";
@@ -51,46 +52,46 @@ const OrderSummaryPage: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
-      <header className="bg-white shadow-sm py-4 px-6">
+      <header className="bg-white shadow-sm py-4 px-4 sm:px-6">
         <div className="container mx-auto flex justify-between items-center">
           <CustomizableLogo />
-          <span className="text-gray-600">Order Summary</span>
+          <span className="text-gray-600 text-sm sm:text-base">Order Summary</span>
         </div>
       </header>
       
-      <main className="flex-1 container mx-auto px-4 py-8">
+      <main className="flex-1 container mx-auto px-2 sm:px-4 py-4 sm:py-8">
         <Button 
           variant="ghost" 
-          className="flex items-center mb-6 text-black hover:bg-gray-50 hover:text-black transition-all duration-200"
+          className="flex items-center mb-4 sm:mb-6 text-black hover:bg-gray-50 hover:text-black transition-all duration-200 text-sm sm:text-base px-2 sm:px-4"
           onClick={() => navigate("/menu")}
         >
           <ArrowLeft className="mr-2 h-4 w-4" /> Back to Menu
         </Button>
         
         {isOrderPlaced ? (
-          <div className="bg-white rounded-lg shadow-lg p-8 text-center max-w-2xl mx-auto animate-fade-in">
-            <div className="w-20 h-20 rounded-full bg-green-100 mx-auto mb-6 flex items-center justify-center">
-              <Check className="h-10 w-10 text-green-600" />
+          <div className="bg-white rounded-lg shadow-lg p-6 sm:p-8 text-center max-w-2xl mx-auto animate-fade-in">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-green-100 mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+              <Check className="h-8 w-8 sm:h-10 sm:w-10 text-green-600" />
             </div>
-            <h1 className="text-3xl font-bold text-black mb-4">Order Confirmed!</h1>
-            <p className="text-gray-600 mb-6">
+            <h1 className="text-2xl sm:text-3xl font-bold text-black mb-4">Order Confirmed!</h1>
+            <p className="text-gray-600 mb-6 text-sm sm:text-base">
               Thank you for your order, {userInfo.name}. The kitchen is preparing your food!
             </p>
             <Button 
               onClick={() => navigate("/menu")} 
-              className="bg-restaurant-primary hover:bg-restaurant-secondary"
+              className="bg-restaurant-primary hover:bg-restaurant-secondary text-sm sm:text-base"
             >
               Place Another Order
             </Button>
           </div>
         ) : (
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-3xl font-bold text-black mb-6">Your Order</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-black mb-4 sm:mb-6">Your Order</h1>
             
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               {/* Order items */}
-              <div className="p-6">
-                <h2 className="text-xl font-semibold text-black mb-4">Order Details</h2>
+              <div className="p-4 sm:p-6">
+                <h2 className="text-lg sm:text-xl font-semibold text-black mb-4">Order Details</h2>
                 
                 <div className="space-y-4">
                   {items.map((item) => {
@@ -98,18 +99,18 @@ const OrderSummaryPage: React.FC = () => {
                     return (
                       <div 
                         key={item.id} 
-                        className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-4 border-b border-gray-200"
+                        className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-4 border-b border-gray-200 gap-4"
                       >
-                        <div className="flex items-center space-x-4 mb-4 sm:mb-0">
+                        <div className="flex items-center space-x-3 sm:space-x-4 flex-1 min-w-0">
                           <img 
                             src={item.image} 
                             alt={item.name} 
-                            className="h-16 w-16 rounded-md object-cover"
+                            className="h-12 w-12 sm:h-16 sm:w-16 rounded-md object-cover flex-shrink-0"
                           />
-                          <div>
-                            <h3 className="font-medium text-black">{item.name}</h3>
-                            <p className="text-sm text-gray-500">
-                              ${itemPrice.toFixed(2)}
+                          <div className="min-w-0 flex-1">
+                            <h3 className="font-medium text-black text-sm sm:text-base">{item.name}</h3>
+                            <p className="text-xs sm:text-sm text-gray-500">
+                              ฿{itemPrice.toFixed(0)}
                               {item.selectedCustomizations?.addOns && (
                                 <span className="text-xs ml-1">
                                   (includes add-ons)
@@ -139,34 +140,34 @@ const OrderSummaryPage: React.FC = () => {
                           </div>
                         </div>
                         
-                        <div className="flex items-center space-x-4 w-full sm:w-auto">
+                        <div className="flex items-center justify-between w-full sm:w-auto sm:space-x-4">
                           <div className="flex items-center border rounded-md overflow-hidden">
                             <button 
-                              className="px-3 py-1 bg-gray-100 hover:bg-gray-200 transition-colors"
+                              className="px-2 sm:px-3 py-1 bg-gray-100 hover:bg-gray-200 transition-colors text-sm"
                               onClick={() => updateQuantity(item.id, item.quantity - 1)}
                               aria-label="Decrease quantity"
                             >
-                              <Minus className="h-4 w-4" />
+                              <Minus className="h-3 w-3 sm:h-4 sm:w-4" />
                             </button>
-                            <span className="px-4 py-1 text-center min-w-[40px]">{item.quantity}</span>
+                            <span className="px-3 sm:px-4 py-1 text-center min-w-[40px] text-sm">{item.quantity}</span>
                             <button 
-                              className="px-3 py-1 bg-gray-100 hover:bg-gray-200 transition-colors"
+                              className="px-2 sm:px-3 py-1 bg-gray-100 hover:bg-gray-200 transition-colors text-sm"
                               onClick={() => updateQuantity(item.id, item.quantity + 1)}
                               aria-label="Increase quantity"
                             >
-                              <Plus className="h-4 w-4" />
+                              <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
                             </button>
                           </div>
                           
-                          <span className="font-medium text-black">
-                            ${(itemPrice * item.quantity).toFixed(2)}
+                          <span className="font-medium text-black text-sm sm:text-base">
+                            ฿{(itemPrice * item.quantity).toFixed(0)}
                           </span>
                           
                           <Button
                             variant="ghost"
                             size="sm"
                             onClick={() => removeFromCart(item.id)}
-                            className="text-red-500 hover:text-red-700 hover:bg-red-50"
+                            className="text-red-500 hover:text-red-700 hover:bg-red-50 text-xs sm:text-sm"
                           >
                             Remove
                           </Button>
@@ -177,26 +178,26 @@ const OrderSummaryPage: React.FC = () => {
                 </div>
               </div>
               
-              {/* Order summary - removed tax calculation */}
-              <div className="bg-gray-50 p-6">
-                <div className="flex justify-between text-lg font-bold text-black">
+              {/* Order summary */}
+              <div className="bg-gray-50 p-4 sm:p-6">
+                <div className="flex justify-between text-lg sm:text-xl font-bold text-black">
                   <span>Total</span>
-                  <span>${totalPrice.toFixed(2)}</span>
+                  <span>฿{totalPrice.toFixed(0)}</span>
                 </div>
               </div>
             </div>
             
-            <div className="mt-8 flex flex-col sm:flex-row justify-between gap-4">
+            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-between gap-4">
               <Button
                 variant="outline"
                 onClick={() => navigate("/menu")}
-                className="border-restaurant-secondary text-restaurant-secondary"
+                className="border-restaurant-secondary text-restaurant-secondary text-sm sm:text-base"
               >
                 Go Back to Menu
               </Button>
               <Button
                 onClick={() => setIsConfirmationOpen(true)}
-                className="bg-restaurant-primary hover:bg-restaurant-secondary"
+                className="bg-restaurant-primary hover:bg-restaurant-secondary text-sm sm:text-base"
               >
                 Confirm Order
               </Button>
@@ -205,28 +206,28 @@ const OrderSummaryPage: React.FC = () => {
         )}
       </main>
       
-      {/* Footer */}
-      <footer className="bg-restaurant-secondary text-white py-4 text-center mt-16">
-        <p>&copy; 2025 Bistro Royale. All rights reserved.</p>
+      {/* Footer - always English */}
+      <footer className="bg-restaurant-primary text-white py-4 text-center mt-16">
+        <p className="text-sm sm:text-base">&copy; 2025 Thai Restaurant. All rights reserved.</p>
       </footer>
       
-      {/* Confirmation Dialog - also updated to remove tax */}
+      {/* Confirmation Dialog */}
       <Dialog open={isConfirmationOpen} onOpenChange={setIsConfirmationOpen}>
-        <DialogContent>
+        <DialogContent className="mx-2 sm:mx-0">
           <DialogHeader>
-            <DialogTitle>Confirm Your Order</DialogTitle>
-            <DialogDescription>
+            <DialogTitle className="text-base sm:text-lg">Confirm Your Order</DialogTitle>
+            <DialogDescription className="text-sm sm:text-base">
               Are you ready to place your order? We'll contact you at {userInfo.phone} when your order is ready.
             </DialogDescription>
           </DialogHeader>
           
           <div className="py-4">
-            <h3 className="font-medium text-black mb-2">Order Summary</h3>
+            <h3 className="font-medium text-black mb-2 text-sm sm:text-base">Order Summary</h3>
             <div className="space-y-2">
               {items.map((item) => {
                 const itemPrice = calculateItemPrice(item);
                 return (
-                  <div key={item.id} className="flex justify-between">
+                  <div key={item.id} className="flex justify-between text-xs sm:text-sm">
                     <span>
                       {item.quantity} x {item.name}
                       {item.selectedCustomizations?.addOns && (
@@ -235,24 +236,24 @@ const OrderSummaryPage: React.FC = () => {
                         </span>
                       )}
                     </span>
-                    <span>${(itemPrice * item.quantity).toFixed(2)}</span>
+                    <span>฿{(itemPrice * item.quantity).toFixed(0)}</span>
                   </div>
                 );
               })}
-              <div className="border-t pt-2 mt-2 font-bold">
+              <div className="border-t pt-2 mt-2 font-bold text-sm sm:text-base">
                 <div className="flex justify-between">
                   <span>Total:</span>
-                  <span>${totalPrice.toFixed(2)}</span>
+                  <span>฿{totalPrice.toFixed(0)}</span>
                 </div>
               </div>
             </div>
           </div>
           
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setIsConfirmationOpen(false)}>
+          <DialogFooter className="flex-col sm:flex-row gap-2">
+            <Button variant="outline" onClick={() => setIsConfirmationOpen(false)} className="text-sm sm:text-base">
               Cancel
             </Button>
-            <Button onClick={handleConfirmOrder} className="bg-restaurant-primary hover:bg-restaurant-secondary">
+            <Button onClick={handleConfirmOrder} className="bg-restaurant-primary hover:bg-restaurant-secondary text-sm sm:text-base">
               Place Order
             </Button>
           </DialogFooter>

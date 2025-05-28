@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizableLogo from "@/components/CustomizableLogo";
@@ -65,8 +66,8 @@ const MenuPage: React.FC = () => {
         <div className="container mx-auto flex justify-between items-center">
           <CustomizableLogo />
           
-          <div className="flex items-center gap-4">
-            <span className="hidden md:block text-black">
+          <div className="flex items-center gap-2 md:gap-4">
+            <span className="hidden sm:block text-black text-sm md:text-base">
               {t("ui.welcome")}, {userInfo.name}
             </span>
             <LanguageSwitcher />
@@ -75,16 +76,16 @@ const MenuPage: React.FC = () => {
         </div>
       </header>
       
-      {/* Category tabs - now in a single row */}
+      {/* Category tabs - responsive design */}
       <div className="bg-white shadow-md py-3 sticky top-0 z-10">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-2 sm:px-4">
           <Tabs defaultValue={activeCategory} onValueChange={setActiveCategory}>
-            <TabsList className="w-full h-auto flex overflow-x-auto pb-1 justify-center gap-2">
+            <TabsList className="w-full h-auto flex overflow-x-auto pb-1 justify-start sm:justify-center gap-1 sm:gap-2">
               {categories.map(category => (
                 <TabsTrigger 
                   key={category.id} 
                   value={category.id}
-                  className="px-4 py-2 whitespace-nowrap data-[state=active]:bg-restaurant-primary data-[state=active]:text-white"
+                  className="px-2 sm:px-4 py-2 whitespace-nowrap text-xs sm:text-sm data-[state=active]:bg-restaurant-primary data-[state=active]:text-white flex-shrink-0"
                 >
                   {t(`categories.${category.id}`, category.name)}
                 </TabsTrigger>
@@ -94,17 +95,17 @@ const MenuPage: React.FC = () => {
         </div>
       </div>
       
-      <main className="flex-1 container mx-auto px-4 py-8">
+      <main className="flex-1 container mx-auto px-2 sm:px-4 py-4 sm:py-8">
         {/* Menu items */}
         <div className="flex-1">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="h-10 w-2 bg-restaurant-primary"></div>
-            <h1 className="text-3xl font-bold text-black">
+          <div className="flex items-center gap-3 mb-4 sm:mb-6">
+            <div className="h-8 sm:h-10 w-2 bg-restaurant-primary"></div>
+            <h1 className="text-2xl sm:text-3xl font-bold text-black">
               {t(`categories.${activeCategory}`, categories.find(cat => cat.id === activeCategory)?.name || "")}
             </h1>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             {filteredItems.map(item => (
               <MenuItemCard 
                 key={item.id} 
@@ -125,16 +126,16 @@ const MenuPage: React.FC = () => {
         </div>
       </main>
       
-      {/* Sticky order button */}
+      {/* Sticky order button - responsive */}
       {totalItems > 0 && (
-        <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t p-4">
+        <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t p-3 sm:p-4 safe-area-inset-bottom">
           <div className="container mx-auto flex justify-between items-center">
-            <span className="font-medium text-black">
+            <span className="font-medium text-black text-sm sm:text-base">
               {totalItems} {totalItems === 1 ? t("ui.itemInCart") : t("ui.itemsInCart")}
             </span>
             <Button 
               onClick={() => navigate("/order")}
-              className="bg-restaurant-primary hover:bg-restaurant-primary/80"
+              className="bg-restaurant-primary hover:bg-restaurant-primary/80 text-sm sm:text-base px-4 sm:px-6"
             >
               {t("ui.viewOrder")}
             </Button>
@@ -142,9 +143,9 @@ const MenuPage: React.FC = () => {
         </div>
       )}
 
-      {/* Footer */}
+      {/* Footer - always English */}
       <footer className="bg-restaurant-primary text-white py-4 text-center mt-16">
-        <p>&copy; 2025 {t("app.title")}. All rights reserved.</p>
+        <p className="text-sm sm:text-base">&copy; 2025 Thai Restaurant. All rights reserved.</p>
       </footer>
     </div>
   );
