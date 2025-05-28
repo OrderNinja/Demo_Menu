@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizableLogo from "@/components/CustomizableLogo";
@@ -53,19 +52,19 @@ const OrderSummaryPage: React.FC = () => {
     <div className="min-h-screen flex flex-col">
       {/* Header */}
       <header className="bg-white shadow-sm py-4 px-4 sm:px-6">
-        <div className="container mx-auto flex justify-between items-center">
+        <div className="container mx-auto flex flex-col items-center space-y-2">
           <CustomizableLogo />
-          <span className="text-gray-600 text-sm sm:text-base">Order Summary</span>
+          <h1 className="text-xl sm:text-2xl font-semibold text-gray-800">Order Summary</h1>
         </div>
       </header>
       
       <main className="flex-1 container mx-auto px-2 sm:px-4 py-4 sm:py-8">
         <Button 
-          variant="ghost" 
-          className="flex items-center mb-4 sm:mb-6 text-black hover:bg-gray-50 hover:text-black transition-all duration-200 text-sm sm:text-base px-2 sm:px-4"
+          variant="outline" 
+          className="flex items-center mb-4 sm:mb-6 text-black hover:bg-gray-100 hover:text-black transition-all duration-200 text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3 border-2 border-gray-300 hover:border-gray-400 font-medium shadow-sm"
           onClick={() => navigate("/menu")}
         >
-          <ArrowLeft className="mr-2 h-4 w-4" /> Back to Menu
+          <ArrowLeft className="mr-2 h-4 w-4" /> Go Back to Menu
         </Button>
         
         {isOrderPlaced ? (
@@ -208,7 +207,7 @@ const OrderSummaryPage: React.FC = () => {
       
       {/* Footer - always English */}
       <footer className="bg-restaurant-primary text-white py-4 text-center mt-16">
-        <p className="text-sm sm:text-base">&copy; 2025 Thai Restaurant. All rights reserved.</p>
+        <p className="text-sm sm:text-base">&copy; 2025 Order Ninja. All rights reserved.</p>
       </footer>
       
       {/* Confirmation Dialog */}
