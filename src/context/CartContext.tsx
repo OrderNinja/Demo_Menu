@@ -1,44 +1,7 @@
+
 import { createContext, useState, useContext, ReactNode } from "react";
 import { useCartNotifications } from "@/hooks/useCartNotifications";
-
-export interface AddOnOption {
-  name: string;
-  price: number;
-}
-
-export interface Customizations {
-  spicyLevel?: string[];
-  sugarLevel?: string[];
-  sauce?: string[];
-  ice?: string[];
-  doneness?: string[];
-  sides?: string[];
-  protein?: string[];
-  pastaType?: string[];
-  topping?: string[];
-  toppings?: string[]; // Added this property
-  drinks?: string[];
-  mains?: string[];
-  appetizers?: string[];
-  appetizer?: string[];
-  dessert?: string[];
-  desserts?: string[];
-  wine?: string[];
-  rice?: string[]; // Added this property
-  curryProtein?: string[]; // Added this property
-  noodleProtein?: string[]; // Added for completeness
-  addOns?: AddOnOption[];
-}
-
-export interface MenuItem {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  category: string;
-  customizations?: Customizations;
-}
+import { MenuItem, AddOnOption, Customizations } from "@/data/menuData";
 
 export interface ItemCustomization {
   [key: string]: string | AddOnOption[];
@@ -204,7 +167,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 export const useCart = () => {
   const context = useContext(CartContext);
   if (context === undefined) {
-    throw new error("useCart must be used within a CartProvider");
+    throw new Error("useCart must be used within a CartProvider");
   }
   return context;
 };
