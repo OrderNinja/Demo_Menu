@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, ReactNode } from "react";
-import { toast } from "sonner";
+import { useCartNotifications } from "@/hooks/useCartNotifications";
 
 export interface AddOnOption {
   name: string;
@@ -61,8 +61,9 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-export const CartProvider = ({ children }: { children: ReactNode }) => {
+const CartProviderInner = ({ children }: { children: ReactNode }) => {
   const [items, setItems] = useState<CartItem[]>([]);
+  const { showAddedToCart, showRemovedFromCart, showCartCleared } = useCartNotifications();
 
   // Generate a unique key for each item + customization combination
   const getCustomizationKey = (item: MenuItem, customizations?: ItemCustomization): string => {
@@ -91,11 +92,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
           ...updatedItems[existingItemIndex],
           quantity: updatedItems[existingItemIndex].quantity + 1
         };
-        toast.success(`Added another ${item.name} to your order`);
+        showAddedToCart(item, true);
         return updatedItems;
       } else {
         // Add new item with quantity 1
-        toast.success(`Added ${item.name} to your order`);
+        showAddedToCart(item, false);
         return [...prevItems, { 
           ...item, 
           quantity: 1,
@@ -115,7 +116,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         );
         
         if (itemToRemove) {
-          toast.info(`Removed ${itemToRemove.name} from your order`);
+          showRemovedFromCart(itemToRemove);
         }
         
         return prevItems.filter((item) => 
@@ -125,7 +126,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         // Remove all items with matching id regardless of customizations
         const itemToRemove = prevItems.find((item) => item.id === itemId);
         if (itemToRemove) {
-          toast.info(`Removed ${itemToRemove.name} from your order`);
+          showRemovedFromCart(itemToRemove);
         }
         return prevItems.filter((item) => item.id !== itemId);
       }
@@ -158,7 +159,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   // Clear cart
   const clearCart = () => {
     setItems([]);
-    toast.info("Your cart has been cleared");
+    showCartCleared();
   };
 
   // Calculate total items in cart
@@ -195,11 +196,15 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
+export const CartProvider = ({ children }: { children: ReactNode }) => {
+  return <CartProviderInner>{children}</CartProviderInner>;
+};
+
 // Custom hook to use cart context
 export const useCart = () => {
   const context = useContext(CartContext);
   if (context === undefined) {
-    throw new Error("useCart must be used within a CartProvider");
+    throw new error("useCart must be used within a CartProvider");
   }
   return context;
 };
