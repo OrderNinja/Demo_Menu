@@ -62,12 +62,12 @@ const MenuPage: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-restaurant-secondary">
       {/* Header */}
-      <header className="bg-[#F2E8D5] py-4 px-6 text-black">
+      <header className="bg-restaurant-secondary py-4 px-6 text-restaurant-primary">
         <div className="container mx-auto flex justify-between items-center">
           <CustomizableLogo />
           
           <div className="flex items-center gap-2 md:gap-4">
-            <span className="hidden sm:block text-black text-sm md:text-base">
+            <span className="hidden sm:block text-restaurant-primary text-sm md:text-base">
               {t("ui.welcome")}, {userInfo.name}
             </span>
             <LanguageSwitcher />
@@ -100,7 +100,7 @@ const MenuPage: React.FC = () => {
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-4 sm:mb-6">
             <div className="h-8 sm:h-10 w-2 bg-restaurant-primary"></div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-black">
+            <h1 className="text-2xl sm:text-3xl font-bold text-restaurant-primary">
               {t(`categories.${activeCategory}`, categories.find(cat => cat.id === activeCategory)?.name || "")}
             </h1>
           </div>
@@ -130,7 +130,7 @@ const MenuPage: React.FC = () => {
       {totalItems > 0 && (
         <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t p-3 sm:p-4 safe-area-inset-bottom">
           <div className="container mx-auto flex justify-between items-center">
-            <span className="font-medium text-black text-sm sm:text-base">
+            <span className="font-medium text-restaurant-primary text-sm sm:text-base">
               {totalItems} {totalItems === 1 ? t("ui.itemInCart") : t("ui.itemsInCart")}
             </span>
             <Button 

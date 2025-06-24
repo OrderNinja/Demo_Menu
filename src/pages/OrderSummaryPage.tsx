@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomizableLogo from "@/components/CustomizableLogo";
@@ -49,19 +50,19 @@ const OrderSummaryPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-restaurant-secondary">
       {/* Header */}
       <header className="bg-white shadow-sm py-4 px-4 sm:px-6">
         <div className="container mx-auto flex flex-col items-center space-y-2">
           <CustomizableLogo />
-          <h1 className="text-xl sm:text-2xl font-semibold text-gray-800">Order Summary</h1>
+          <h1 className="text-xl sm:text-2xl font-semibold text-restaurant-primary">Order Summary</h1>
         </div>
       </header>
       
       <main className="flex-1 container mx-auto px-2 sm:px-4 py-4 sm:py-8">
         <Button 
           variant="outline" 
-          className="flex items-center mb-4 sm:mb-6 text-black hover:bg-gray-100 hover:text-black transition-all duration-200 text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3 border-2 border-gray-300 hover:border-gray-400 font-medium shadow-sm"
+          className="flex items-center mb-4 sm:mb-6 text-restaurant-primary hover:bg-restaurant-secondary hover:text-restaurant-primary transition-all duration-200 text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3 border-2 border-restaurant-primary hover:border-restaurant-primary font-medium shadow-sm"
           onClick={() => navigate("/menu")}
         >
           <ArrowLeft className="mr-2 h-4 w-4" /> Go Back to Menu
@@ -72,25 +73,25 @@ const OrderSummaryPage: React.FC = () => {
             <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-green-100 mx-auto mb-4 sm:mb-6 flex items-center justify-center">
               <Check className="h-8 w-8 sm:h-10 sm:w-10 text-green-600" />
             </div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-black mb-4">Order Confirmed!</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-restaurant-primary mb-4">Order Confirmed!</h1>
             <p className="text-gray-600 mb-6 text-sm sm:text-base">
               Thank you for your order, {userInfo.name}. The kitchen is preparing your food!
             </p>
             <Button 
               onClick={() => navigate("/menu")} 
-              className="bg-restaurant-primary hover:bg-restaurant-secondary text-sm sm:text-base"
+              className="bg-restaurant-primary hover:bg-restaurant-primary/80 text-sm sm:text-base"
             >
               Place Another Order
             </Button>
           </div>
         ) : (
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-2xl sm:text-3xl font-bold text-black mb-4 sm:mb-6">Your Order</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-restaurant-primary mb-4 sm:mb-6">Your Order</h1>
             
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               {/* Order items */}
               <div className="p-4 sm:p-6">
-                <h2 className="text-lg sm:text-xl font-semibold text-black mb-4">Order Details</h2>
+                <h2 className="text-lg sm:text-xl font-semibold text-restaurant-primary mb-4">Order Details</h2>
                 
                 <div className="space-y-4">
                   {items.map((item) => {
@@ -179,7 +180,7 @@ const OrderSummaryPage: React.FC = () => {
               
               {/* Order summary */}
               <div className="bg-gray-50 p-4 sm:p-6">
-                <div className="flex justify-between text-lg sm:text-xl font-bold text-black">
+                <div className="flex justify-between text-lg sm:text-xl font-bold text-restaurant-primary">
                   <span>Total</span>
                   <span>฿{totalPrice.toFixed(0)}</span>
                 </div>
@@ -190,13 +191,13 @@ const OrderSummaryPage: React.FC = () => {
               <Button
                 variant="outline"
                 onClick={() => navigate("/menu")}
-                className="border-restaurant-secondary text-restaurant-secondary text-sm sm:text-base"
+                className="border-restaurant-primary text-restaurant-primary hover:bg-restaurant-primary hover:text-white text-sm sm:text-base"
               >
                 Go Back to Menu
               </Button>
               <Button
                 onClick={() => setIsConfirmationOpen(true)}
-                className="bg-restaurant-primary hover:bg-restaurant-secondary text-sm sm:text-base"
+                className="bg-restaurant-primary hover:bg-restaurant-primary/80 text-sm sm:text-base"
               >
                 Confirm Order
               </Button>
